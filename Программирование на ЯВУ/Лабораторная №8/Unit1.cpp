@@ -1,0 +1,68 @@
+//---------------------------------------------------------------------------
+#include <Math.hpp>
+#include <math.h>
+#include <vcl.h>
+#pragma hdrstop
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+float sum(float x,int n);
+float func(float x);
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+        Close();        
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+        float x1,x2,y,s;
+        x1=3.14159265/5.0;
+        x2=4*3.14159265/5.0;
+        const d=40;
+        double h=((4.0*3.14159265/5.0)-(3.14159265/5.0))/10.0;
+        while (x1 <= x2){
+                y=func(x1);
+                s=sum(x1,d);
+                Memo1->Lines->Add(FloatToStr(y));
+                Memo2->Lines->Add(FloatToStr(s));
+                x1+=h;
+       }
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+        Memo1->Clear();
+        Memo2->Clear();
+}
+//---------------------------------------------------------------------------
+
+float sum(float x,int n)
+{
+        if(!n)
+                return 0;
+        else
+                return(sum(x,n-1)+Power(-1,n+1)*sin(n*x)/n);
+}
+
+//---------------------------------------------------------------------------
+
+float func(float x)
+{
+        return(x/2.0);
+}
+
+//---------------------------------------------------------------------------
+

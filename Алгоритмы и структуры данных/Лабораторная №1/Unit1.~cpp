@@ -1,0 +1,80 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+#include "Unit1.h"
+#include "Unit2.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+
+MyFIFO *head,*p,*p1;
+//---------------------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+        Close();
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button4Click(TObject *Sender)       //Вывод
+{
+        MyFIFO *spisok=head;
+        if(n)
+                while (spisok!=p->next){
+                        Memo1->Lines->Add(spisok->family);
+                        Memo1->Lines->Add(spisok->code);
+                        Memo1->Lines->Add(" ");
+                        spisok=spisok->next;
+                }
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+        Memo1->Clear();        
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+        p1=head;
+        if(p!=p1) {
+                for(int i=1;i<n-1;i++)
+                        p1=p1->next;
+                delete p;
+                p=p1;
+                p1->next=NULL;
+        }
+        else {
+                head=NULL;
+                delete p1;
+        }
+        n--;
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+        Form2->Show();
+
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+        Memo1->Clear();
+}
+//---------------------------------------------------------------------------
+
+
+
