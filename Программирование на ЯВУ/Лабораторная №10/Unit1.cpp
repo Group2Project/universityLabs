@@ -2,6 +2,7 @@
 
 #include <vcl.h>
 #pragma hdrstop
+
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -14,11 +15,9 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 //---------------------------------------------------------------------------
 
-
-
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-        Image1->Canvas->Brush->Color=clRed;
+Image1->Canvas->Brush->Color=clRed;
         Image1->Canvas->Pen->Color=clBlack;
         Image1->Canvas->Pen->Width=2;
         //Машина
@@ -40,6 +39,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         Image1->Canvas->Brush->Color=clBlack;
         Image1->Canvas->Ellipse(230,150,270,190);
         Image1->Canvas->Ellipse(50,150,90,190);
-        Image1->Canvas->Arc(310,120,280,150,300,150,300,120);
+        Image1->Canvas->Arc(310,120,280,150,300,150,300,120);        
 }
 //---------------------------------------------------------------------------
+ 
