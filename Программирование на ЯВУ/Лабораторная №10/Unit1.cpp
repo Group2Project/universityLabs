@@ -17,29 +17,45 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::FormCreate(TObject *Sender)
 {
-Image1->Canvas->Brush->Color=clRed;
-        Image1->Canvas->Pen->Color=clBlack;
-        Image1->Canvas->Pen->Width=2;
+
+        Image2->Canvas->Pen->Color=clBlack;
+        Image2->Canvas->Pen->Width=2;
         //Машина
-        Image1->Canvas->MoveTo(11,111);
-        Image1->Canvas->LineTo(60,112);
-        Image1->Canvas->LineTo(90,70);
-        Image1->Canvas->LineTo(180,70);
-        Image1->Canvas->LineTo(230,112);
-        Image1->Canvas->LineTo(300,112);
-        Image1->Canvas->LineTo(300,170);
-        Image1->Canvas->LineTo(280,170);
-        Image1->Canvas->Arc(220,140,280,200,280,170,220,170);
-        Image1->Canvas->MoveTo(220,170);
-        Image1->Canvas->LineTo(100,170);
-        Image1->Canvas->Arc(40,140,100,200,100,170,40,170);
-        Image1->Canvas->MoveTo(40,170);
-        Image1->Canvas->LineTo(12,170);
-        Image1->Canvas->LineTo(12,111);      //Ellipse(ширина,высота
-        Image1->Canvas->Brush->Color=clBlack;
-        Image1->Canvas->Ellipse(230,150,270,190);
-        Image1->Canvas->Ellipse(50,150,90,190);
-        Image1->Canvas->Arc(310,120,280,150,300,150,300,120);        
+        Image2->Canvas->MoveTo(12,41);
+        Image2->Canvas->LineTo(60,42);
+        Image2->Canvas->LineTo(90,0);
+        Image2->Canvas->LineTo(180,0);
+        Image2->Canvas->LineTo(230,42);
+        Image2->Canvas->LineTo(300,42);
+        Image2->Canvas->LineTo(300,100);
+        Image2->Canvas->LineTo(280,100);
+        Image2->Canvas->Arc(220,70,280,130,280,100,220,100);
+        Image2->Canvas->MoveTo(220,100);
+        Image2->Canvas->LineTo(100,100);
+        Image2->Canvas->Arc(40,70,100,130,100,100,40,100);
+        Image2->Canvas->MoveTo(40,100);
+        Image2->Canvas->LineTo(12,100);
+        Image2->Canvas->LineTo(12,41);      //Ellipse(ширина,высота
+        Image2->Canvas->Brush->Color=clBlack;
+        Image2->Canvas->Ellipse(230,80,270,120);
+        Image2->Canvas->Ellipse(50,80,90,120);
+        Image2->Canvas->Arc(310,50,280,80,300,80,300,50);
+        Image2->Canvas->Brush->Color=clRed;
+        Image2->Canvas->FloodFill(128,48,clBlack,fsBorder);
+        Image2->Canvas->Brush->Color=clWhite;
+        Image2->Canvas->FloodFill(1,1,clBlack,fsBorder);
+        Image1->Canvas->FloodFill(128,48,clRed,fsBorder);
+
 }
 //---------------------------------------------------------------------------
- 
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+        Timer1->Interval=50;
+        Timer1->Enabled=true;        
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+        Image1->Left -= 10;
+}
+//---------------------------------------------------------------------------
