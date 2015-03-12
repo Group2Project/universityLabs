@@ -115,39 +115,3 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 
 
 
-void __fastcall TForm1::Button7Click(TObject *Sender)
-{
-        FIFO *spisok1=head1;
-        FIFO *spisok3;
-        for(int i=0;i<n1;i++)
-        {
-                FIFO *spisok2=head2;
-                for(int j=0;j<n2;j++)
-                {
-                        if(spisok1->family == spisok2->family && spisok1->code == spisok2->code)
-                        {
-                                spisok3 = new FIFO;
-                                spisok3->family=spisok1->family;
-                                spisok3->code=spisok1->code;
-                                if(head3){
-                                        p3->next=spisok3;
-                                        p3=spisok3;
-                                }
-                                else
-                                        p3=head3=spisok3;
-                                n3++;
-                        }
-                        spisok2=spisok2->next;
-                }
-                spisok1=spisok1->next;
-        }
-        spisok3=head3;
-        if(n3)
-                while (spisok3!=p3->next){
-                        Memo3->Lines->Add(spisok3->family + " " + spisok3->code);
-                        Memo3->Lines->Add(" ");
-                        spisok3=spisok3->next;
-                }
-}
-//---------------------------------------------------------------------------
-
