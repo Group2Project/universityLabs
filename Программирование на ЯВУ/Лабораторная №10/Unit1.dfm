@@ -1,9 +1,10 @@
 object Form1: TForm1
-  Left = 224
-  Top = 142
-  Width = 708
-  Height = 485
+  Left = 3
+  Top = 129
+  BorderStyle = bsSingle
   Caption = 'Form1'
+  ClientHeight = 434
+  ClientWidth = 1249
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +18,7 @@ object Form1: TForm1
   object Image1: TImage
     Left = 0
     Top = 0
-    Width = 681
+    Width = 1249
     Height = 433
     Transparent = True
   end
@@ -38,6 +39,7 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Timer1: TTimer
+    Enabled = False
     OnTimer = Timer1Timer
     Left = 648
     Top = 8
