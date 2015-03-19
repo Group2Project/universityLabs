@@ -16,7 +16,7 @@ struct FIFO
         FIFO *next;
 };
 
-extern FIFO *head1,*head2,*head3,*p1,*p2,*p3,*p1_d,*p2_d;
+extern FIFO *head1,*head2,*head3,*p1,*p2,*p3,*p1_d,*p2_d,*p3_d;
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {

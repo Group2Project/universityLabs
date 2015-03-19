@@ -9,7 +9,7 @@
 #pragma resource "*.dfm"
 TForm1 *Form1;
 int n3(0);
-FIFO *head1,*head2,*head3,*p1,*p2,*p3,*p1_d,*p2_d;
+FIFO *head1,*head2,*head3,*p1,*p2,*p3,*p1_d,*p2_d,*p3_d;
 //---------------------------------------------------------------------------
 
 
@@ -117,8 +117,26 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 
 void __fastcall TForm1::Button7Click(TObject *Sender)
 {
+        FIFO *spisok3=head3;
+        if(head3)
+                for(;n3!=0;)
+                {
+                        p3_d=head3;
+                        if(p3!=p3_d)
+                        {
+                                for(int i=1;i<n3-1;i++)
+                                        p3_d=p3_d->next;
+                        delete p3;
+                        p3=p3_d;
+                        p3_d->next=NULL;
+                        }
+                        else {
+                                head3=NULL;
+                                delete p3_d;
+                        }
+                        n3--;
+                }
         FIFO *spisok1=head1;
-        FIFO *spisok3;
         for(int i=0;i<n1;i++)
         {
                 FIFO *spisok2=head2;
