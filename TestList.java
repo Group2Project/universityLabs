@@ -67,17 +67,20 @@ public class TestList implements ListSelectionListener {
 		{
 			jlbl2.setText("");
 			int indx = jlst.getSelectedIndex();
+			if(indx < 0)
+				return;
 			dir.clear();
 			jlbl.setText("Был выбран" + indx);
 			try
 			{	
 				dir.add(files[indx].getAbsolutePath());
 				File a = new File(dir.get(0));
-				files = a.listFiles();
+				if(!a.isFile())
+					files = a.listFiles();
 				for(int i=0;i<files.length;i++)												   
-					listModel.removeAllElements();	
+					listModel.removeAllElements();
 				for(int i=0;i<files.length;i++)												   
-					listModel.addElement(files[i]);	
+					listModel.addElement(files[i]);
 				
 			}
 			catch(ArrayIndexOutOfBoundsException ex)
@@ -88,6 +91,8 @@ public class TestList implements ListSelectionListener {
 			{
 				jlbl2.setText("Херня какая-то");
 			}
+				
+			
 		}
 		
 	public static void main(String[] args)
