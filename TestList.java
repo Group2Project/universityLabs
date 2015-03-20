@@ -65,6 +65,7 @@ public class TestList implements ListSelectionListener {
 	}	
 		public void valueChanged(ListSelectionEvent le)
 		{
+			jlbl2.setText("");
 			int indx = jlst.getSelectedIndex();
 			dir.clear();
 			jlbl.setText("Был выбран" + indx);
@@ -88,6 +89,7 @@ public class TestList implements ListSelectionListener {
 				jlbl2.setText("Херня какая-то");
 			}
 		}
+		
 	public static void main(String[] args)
 	{
 		SwingUtilities.invokeLater(new Runnable() {
