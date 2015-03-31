@@ -111,6 +111,20 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
                                 Memo1->Lines->Add(temp->family);
                         temp=temp->next;
                 }
+                for(int i=0;i<Memo1->Lines->Count-1;i++)
+                        for(int j=0;j<Memo1->Lines->Count-1-i;j++)
+                                if(Memo1->Lines->Strings[j] > Memo1->Lines->Strings[j+1])
+                                {
+                                        AnsiString temp_str = Memo1->Lines->Strings[j];
+                                        Memo1->Lines->Strings[j] = Memo1->Lines->Strings[j+1];
+                                        Memo1->Lines->Strings[j+1] = temp_str;
+                                }
+                for(int i=0;i<Memo1->Lines->Count;i++)
+                        if(Memo1->Lines->Strings[i] == Memo1->Lines->Strings[i+1])
+                        {
+                                Memo1->Lines->Delete(i);
+                                i-=2;
+                        }
         }
         else
                 ShowMessage("Список пуст");        
