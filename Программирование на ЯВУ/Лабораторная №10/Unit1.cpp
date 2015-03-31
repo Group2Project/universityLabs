@@ -58,32 +58,58 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         // Окружение
         Image1->Canvas->Pen->Color=clBlack;
         Image1->Canvas->Pen->Width=2;
-        Image1->Canvas->MoveTo(0,130);
-        Image1->Canvas->LineTo(1249,130);
-        Image1->Canvas->MoveTo(0,336);
-        Image1->Canvas->LineTo(1249,336);
-        Image1->Canvas->Brush->Color=RGB(128,128,128);
-        Image1->Canvas->FloodFill(9,208,clBlack,fsBorder);
-        Image1->Canvas->Pen->Color=clWhite;
-        Image1->Canvas->Brush->Color=clWhite;
-        for(int i(0),x1(0),x2(48);i<20;i++)
-        {
-                Image1->Canvas->Rectangle(x1+i*100,225,x2+i*100,241);
-        }
+        //----Асфальт(Верх)----------------//
+        Image1->Canvas->MoveTo(0,280);     //
+        Image1->Canvas->LineTo(1249,280);  //
+        //---------------------------------//
 
+        //----Асфальт(Низ)----------------//
+        Image1->Canvas->MoveTo(0,486);    //
+        Image1->Canvas->LineTo(1249,486); //
+        //--------------------------------//
+
+        //----Закраска-асфальта----------------------------//
+        Image1->Canvas->Brush->Color=RGB(128,128,128);     //
+        Image1->Canvas->FloodFill(9,358,clBlack,fsBorder); //
+        //-------------------------------------------------//
+
+        //----Разметка--------------------------------------------------//
+        Image1->Canvas->Pen->Color=clWhite;                             //
+        Image1->Canvas->Brush->Color=clWhite;                           //
+        for(int i(0),x1(0),x2(48);i<20;i++)                             //
+        {                                                               //
+                Image1->Canvas->Rectangle(x1+i*100,375,x2+i*100,391);   //
+        }                                                               //
+        //--------------------------------------------------------------//
+
+        //----Горизонт-----------------------------//
+        Image1->Canvas->Pen->Color=clBlack;        //
+        Image1->Canvas->Pen->Width=1;              //
+        Image1->Canvas->MoveTo(0,120);             //
+        Image1->Canvas->LineTo(Image1->Width,120); //
+        //-----------------------------------------//
+
+        //----Трава-и-небо---------------------------------//
+        Image1->Canvas->Brush->Color=clLime;               //
+        Image1->Canvas->FloodFill(1,121,clBlack,fsBorder); //
+        Image1->Canvas->Brush->Color=clHighlight;          //
+        Image1->Canvas->FloodFill(0,0,clBlack,fsBorder);   //
+        //-------------------------------------------------//
+
+        //----Солнце----------------------------//
+        Image1->Canvas->Brush->Color=clYellow;  //
+        Image1->Canvas->Ellipse(680,16,760,96); //
+        //--------------------------------------//
 
         Image1->Canvas->Pen->Color=clBlack;
-        Image
+        Image1->Canvas->Brush->Color=clWhite;
+        for(int i(0),x1(8),x2(28);i<10;i++)
+                Image1->Canvas->Rectangle(x1+i*100,280,x2+i*100,200);
 
 
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::Button1Click(TObject *Sender)
-{
-        Image2->Left=9;
-        Image2->Top=208;
-        Timer1->Interval=20;
-        Timer1->Enabled=true;
+
+
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Timer1Timer(TObject *Sender)
@@ -93,4 +119,13 @@ void __fastcall TForm1::Timer1Timer(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
+
+void __fastcall TForm1::FormClick(TObject *Sender)
+{
+        Image2->Left=0;
+        Image2->Top=352;
+        Timer1->Interval=20;
+        Timer1->Enabled=true;
+}
+//---------------------------------------------------------------------------
 
