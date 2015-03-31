@@ -100,7 +100,17 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
                 temp=head;
                 while(temp!=p->next)
                 {
-                        if
+                        if(!temp->army && temp->age < min_age)
+                                min_age = temp->age;
+                        temp=temp->next;
+                }
+                temp=head;
+                while(temp!=p->next)
+                {
+                        if(!temp->army && temp->age == min_age)
+                                Memo1->Lines->Add(temp->family);
+                        temp=temp->next;
+                }
         }
         else
                 ShowMessage("Список пуст");        
