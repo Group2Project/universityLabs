@@ -1,8 +1,8 @@
 object Form1: TForm1
   Left = 192
   Top = 124
-  Width = 792
-  Height = 511
+  Width = 708
+  Height = 405
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -75,6 +75,71 @@ object Form1: TForm1
     FixedCols = 0
     RowCount = 1
     FixedRows = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
     TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 16
+    Top = 176
+    Width = 97
+    Height = 33
+    Caption = #1042#1099#1074#1086#1076
+    TabOrder = 2
+    OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 120
+    Top = 176
+    Width = 89
+    Height = 33
+    Caption = #1054#1095#1080#1089#1090#1080#1090#1100
+    TabOrder = 3
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 216
+    Top = 176
+    Width = 81
+    Height = 33
+    Caption = #1042#1099#1093#1086#1076
+    TabOrder = 4
+    OnClick = Button4Click
+  end
+  object Panel2: TPanel
+    Left = 16
+    Top = 224
+    Width = 281
+    Height = 105
+    TabOrder = 5
+    object Label4: TLabel
+      Left = 104
+      Top = 8
+      Width = 76
+      Height = 13
+      Caption = #1059#1076#1072#1083#1077#1085#1080#1077' '#1091#1079#1083#1072
+    end
+    object Label6: TLabel
+      Left = 8
+      Top = 40
+      Width = 126
+      Height = 13
+      Caption = #1053#1086#1084#1077#1088' '#1091#1076#1072#1083#1103#1077#1084#1086#1075#1086' '#1091#1079#1083#1072':'
+    end
+    object Button5: TButton
+      Left = 104
+      Top = 64
+      Width = 89
+      Height = 25
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+    object CSpinEdit2: TCSpinEdit
+      Left = 144
+      Top = 32
+      Width = 121
+      Height = 22
+      TabOrder = 1
+    end
   end
 end
