@@ -42,17 +42,10 @@ object Form1: TForm1
     end
     object Edit1: TEdit
       Left = 144
-      Top = 40
-      Width = 121
-      Height = 21
-      TabOrder = 0
-    end
-    object Edit2: TEdit
-      Left = 144
       Top = 72
       Width = 121
       Height = 21
-      TabOrder = 1
+      TabOrder = 0
     end
     object Button1: TButton
       Left = 96
@@ -60,7 +53,26 @@ object Form1: TForm1
       Width = 89
       Height = 25
       Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      TabOrder = 1
+      OnClick = Button1Click
+    end
+    object CSpinEdit1: TCSpinEdit
+      Left = 144
+      Top = 40
+      Width = 121
+      Height = 22
       TabOrder = 2
     end
+  end
+  object StringGrid1: TStringGrid
+    Left = 312
+    Top = 16
+    Width = 369
+    Height = 273
+    ColCount = 1
+    FixedCols = 0
+    RowCount = 1
+    FixedRows = 0
+    TabOrder = 1
   end
 end
