@@ -51,9 +51,14 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                 ShowMessage("Узлы необходимо вводить через ';'");
                 return;
         }
-        for(int i=0;i<temp_unit->amount-1;i++)
+        for(int i=0;i<temp_unit->amount;i++)
         {
                 int t = unit_str.Pos(";");
+                if(!t)
+                {
+                        ShowMessage("Неверное число узлов");
+                        return;
+                }
                 temp_unit->mas[i]=StrToInt(unit_str.SubString(1,t-1));
                 unit_str.Delete(1,t);
         }
