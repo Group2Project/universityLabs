@@ -40,29 +40,45 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         }                                                                //
         //---------------------------------------------------------------//
 
-        //----Заполнение узла-----------------------
-        unit *temp_unit = new unit;
-        temp_unit->amount = CSpinEdit1->Value;
-        temp_unit->num = n++;
-        temp_unit->mas = new int[temp_unit->amount];
-        AnsiString unit_str = Edit1->Text;
-        if(!unit_str.Pos(";"))
-        {
-                ShowMessage("Узлы необходимо вводить через ';'");
-                return;
-        }
-        for(int i=0;i<temp_unit->amount;i++)
-        {
-                int t = unit_str.Pos(";");
-                if(!t)
-                {
-                        ShowMessage("Неверное число узлов");
-                        return;
-                }
-                temp_unit->mas[i]=StrToInt(unit_str.SubString(1,t-1));
-                unit_str.Delete(1,t);
-        }
+        //----Заполнение узла--------------------------------------------//
+        unit *temp_unit = new unit;                                      //
+        temp_unit->amount = CSpinEdit1->Value;                           //
+        temp_unit->mas = new int[temp_unit->amount];                     //
+        AnsiString unit_str = Edit1->Text;                               //
+        if(!unit_str.Pos(";"))                                           //
+        {                                                                //
+                ShowMessage("Узлы необходимо вводить через ';'");        //
+                return;                                                  //
+        }                                                                //
+        for(int i=0;i<temp_unit->amount;i++)                             //
+        {                                                                //
+                int t = unit_str.Pos(";");                               //
+                if(!t)                                                   //
+                {                                                        //
+                        ShowMessage("Неверное число узлов");             //
+                        return;                                          //
+                }                                                        //
+                temp_unit->mas[i]=StrToInt(unit_str.SubString(1,t-1));   //
+                unit_str.Delete(1,t);                                    //
+        }                                                                //
+        temp_unit->num = n++;                                            //
+        //---------------------------------------------------------------//
 
+        //----Добавление узла в граф--//
+        if(!head)                     //
+                p=head=temp_unit;     //
+        else                          //
+        {                             //
+                p->next=temp_unit;    //
+                p=temp_unit;          //
+        }                             //
+        //----------------------------//
+
+        //----Добавление узла в матрицу смежности---
+        StringGrid1->ColCount=n+1;
+        StringGrid1->RowCount=n+1;
+        StringGrid1->Cells[n][0]=IntToStr(temp_unit->num);
+        StringGrid1->Cells[0][n]=IntToStr(temp_unit->num);
 }
 //---------------------------------------------------------------------------
 

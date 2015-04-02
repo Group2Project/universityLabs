@@ -67,9 +67,11 @@ object Form1: TForm1
   object StringGrid1: TStringGrid
     Left = 312
     Top = 16
-    Width = 369
-    Height = 273
+    Width = 321
+    Height = 217
     ColCount = 1
+    DefaultColWidth = 20
+    DefaultRowHeight = 20
     FixedCols = 0
     RowCount = 1
     FixedRows = 0
