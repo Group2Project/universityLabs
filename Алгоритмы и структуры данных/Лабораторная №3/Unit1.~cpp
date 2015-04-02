@@ -6,13 +6,58 @@
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#pragma link "CSPIN"
 #pragma resource "*.dfm"
 TForm1 *Form1;
-
+int n(0);
+struct unit
+{
+        int amount,num,*mas;
+        unit *next;
+};
+unit *head,*p;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
 {
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+
+        //----Проверка введенных данных----------------------------------//
+        if(!CSpinEdit1->Value && Edit1->Text != "")                      //
+        {                                                                //
+                ShowMessage("Пустой узел не может быть иметь связей.");  //
+                return;                                                  //
+        }                                                                //
+        if(CSpinEdit1->Value && Edit1->Text == "")                       //
+        {                                                                //
+                ShowMessage("Введите с какими узлами связан.");          //
+                return;                                                  //
+        }                                                                //
+        //---------------------------------------------------------------//
+
+        //----Заполнение узла-----------------------
+        unit *temp_unit = new unit;
+        temp_unit->amount = CSpinEdit1->Value;
+        temp_unit->num = n++;
+        temp_unit->mas = new int[temp_unit->amount];
+        AnsiString unit_str = Edit1->Text;
+        if(!unit_str.Pos(";"))
+        {
+                ShowMessage("Узлы необходимо вводить через ';'");
+                return;
+        }
+        for(int i=0;i<temp_unit->amount;i++)
+        {
+                int t = unit_str.Pos(";");
+                temp_unit->mas[i]=StrToInt(unit_str.SubString(1,t-1));
+                unit_str.Delete(1,t);
+        }
+
 }
 //---------------------------------------------------------------------------
 

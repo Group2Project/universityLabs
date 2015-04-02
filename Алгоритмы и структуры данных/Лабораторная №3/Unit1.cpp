@@ -51,7 +51,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                 ShowMessage("Узлы необходимо вводить через ';'");
                 return;
         }
-        for(int i=0;i<temp_unit->amount;i++)
+        for(int i=0;i<temp_unit->amount-1;i++)
         {
                 int t = unit_str.Pos(";");
                 temp_unit->mas[i]=StrToInt(unit_str.SubString(1,t-1));
