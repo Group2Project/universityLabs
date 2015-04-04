@@ -70,13 +70,13 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         }                             //
         //----------------------------//
 
-        
+
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button4Click(TObject *Sender)
 {
-        Close();        
+        Close();
 }
 //---------------------------------------------------------------------------
 
@@ -116,4 +116,62 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
                          StringGrid1->Cells[i][i]="";
 }
 //---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+        unit *del_unit;
+        //----Удаление узла из списка-------------------//
+        if(CSpinEdit2->Value)                           //
+        {                                               //
+                unit *del_unit2=head;                   //
+                for(int i=0;i<CSpinEdit2->Value-1;i++)  //
+                        del_unit2=del_unit2->next;      //
+                del_unit=del_unit2->next;               //
+                del_unit2->next=del_unit->next;         //
+                delete del_unit->mas;                   //
+                delete del_unit;                        //
+        }                                               //
+        else                                            //
+        {                                               //
+                del_unit=head;                          //
+                head->next=del_unit->next;              //
+                delete del_unit;                        //
+        }                                               //
+        //----------------------------------------------//
+
+        del_unit=head;
+        while(del_unit!=p->next)
+        {
+                bool check(false);
+                for(int i=0;i<del_unit->amount;i++)
+                        if(del_unit->mas[i] == CSpinEdit2->Value)
+                        {
+                                check = true;
+                                break;
+                        }
+                if(check)
+                {
+
+                        int *del_mas = new int[del_unit->amount-1];
+                        check = false;
+                        for(int i=0;i<del_unit->amount;i++)
+                                if(del_unit->mas[i] != CSpinEdit2->Value)
+                                        if(!check)
+                                                del_mas[i]=del_unit->mas[i];
+                                        else
+                                                del_mas[i-1]=del_unit->mas[i];
+                                else
+                                        check=true;
+
+                        del_unit->amount--;
+                }
+                del_unit=del_unit->next;
+        }
+        n--;
+}
+//---------------------------------------------------------------------------
+
+
+
 

@@ -30,7 +30,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         //----Проверка введенных данных----------------------------------//
         if(!CSpinEdit1->Value && Edit1->Text != "")                      //
         {                                                                //
-                ShowMessage("Пустой узел не может быть иметь связей.");  //
+                ShowMessage("Пустой узел не может иметь связей.");       //
                 return;                                                  //
         }                                                                //
         if(CSpinEdit1->Value && Edit1->Text == "")                       //
@@ -40,29 +40,25 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         }                                                                //
         //---------------------------------------------------------------//
 
-        //----Заполнение узла--------------------------------------------//
-        unit *temp_unit = new unit;                                      //
-        temp_unit->amount = CSpinEdit1->Value;                           //
-        temp_unit->mas = new int[temp_unit->amount];                     //
-        AnsiString unit_str = Edit1->Text;                               //
-        if(!unit_str.Pos(";"))                                           //
-        {                                                                //
-                ShowMessage("Узлы необходимо вводить через ';'");        //
-                return;                                                  //
-        }                                                                //
-        for(int i=0;i<temp_unit->amount;i++)                             //
-        {                                                                //
-                int t = unit_str.Pos(";");                               //
-                if(!t)                                                   //
-                {                                                        //
-                        ShowMessage("Неверное число узлов");             //
-                        return;                                          //
-                }                                                        //
-                temp_unit->mas[i]=StrToInt(unit_str.SubString(1,t-1));   //
-                unit_str.Delete(1,t);                                    //
-        }                                                                //
-        temp_unit->num = n++;                                            //
-        //---------------------------------------------------------------//
+        //----Заполнение узла----------------------------------------------------------//
+        unit *temp_unit = new unit;                                                    //
+        temp_unit->amount = CSpinEdit1->Value;                                         //
+        temp_unit->mas = new int[temp_unit->amount];                                   //
+        AnsiString unit_str = Edit1->Text;                                             //
+        if(!unit_str.Pos(";") && CSpinEdit1->Value)                                    //
+        {                                                                              //
+                ShowMessage("Узлы необходимо вводить через ';'");                      //
+                return;                                                                //
+        }                                                                              //
+        for(int i=0;i<temp_unit->amount;i++)                                           //
+        {                                                                              //
+                if(!unit_str.Pos(";"))                                                 //
+                        return;                                                        //
+                temp_unit->mas[i]=StrToInt(unit_str.SubString(1,unit_str.Pos(";")-1)); //
+                unit_str.Delete(1,unit_str.Pos(";"));                                  //
+        }                                                                              //
+        temp_unit->num = n++;                                                          //
+        //-----------------------------------------------------------------------------//
 
         //----Добавление узла в граф--//
         if(!head)                     //
@@ -74,13 +70,13 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         }                             //
         //----------------------------//
 
-        
+
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button4Click(TObject *Sender)
 {
-        Close();        
+        Close();
 }
 //---------------------------------------------------------------------------
 
@@ -106,10 +102,76 @@ void __fastcall TForm1::Button2Click(TObject *Sender)
                         StringGrid1->Cells[i+1][0]=i;
         }
         unit *out_unit = head;
-        while(out_unit != p->next;)
-        {
-
-        }
+        for(;out_unit!=p->next;out_unit=out_unit->next)
+                for(int i=0;i<out_unit->amount;i++)
+                {
+                        StringGrid1->Cells[out_unit->num+1][out_unit->mas[i]+1]="+";
+                        StringGrid1->Cells[out_unit->mas[i]+1][out_unit->num+1]="+";
+                }
+        for(int i=0;i<n+1;i++)
+                for(int j=0;j<n+1;j++)
+                        if(StringGrid1->Cells[j][i]=="")
+                                StringGrid1->Cells[j][i]="-";
+        for(int i=0;i<n+1;i++)
+                         StringGrid1->Cells[i][i]="";
 }
 //---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+        unit *del_unit;
+        //----Удаление узла из списка-------------------//
+        if(CSpinEdit2->Value)                           //
+        {                                               //
+                unit *del_unit2=head;                   //
+                for(int i=0;i<CSpinEdit2->Value-1;i++)  //
+                        del_unit2=del_unit2->next;      //
+                del_unit=del_unit2->next;               //
+                del_unit2->next=del_unit->next;         //
+                delete del_unit->mas;                   //
+                delete del_unit;                        //
+        }                                               //
+        else                                            //
+        {                                               //
+                del_unit=head;                          //
+                head->next=del_unit->next;              //
+                delete del_unit;                        //
+        }                                               //
+        //----------------------------------------------//
+
+        del_unit=head;
+        while(del_unit!=p->next)
+        {
+                bool check(false);
+                for(int i=0;i<del_unit->amount;i++)
+                        if(del_unit->mas[i] == CSpinEdit2->Value)
+                        {
+                                check = true;
+                                break;
+                        }
+                if(check)
+                {
+
+                        int *del_mas = new int[del_unit->amount-1];
+                        check = false;
+                        for(int i=0;i<del_unit->amount;i++)
+                                if(del_unit->mas[i] != CSpinEdit2->Value)
+                                        if(!check)
+                                                del_mas[i]=del_unit->mas[i];
+                                        else
+                                                del_mas[i-1]=del_unit->mas[i];
+                                else
+                                        check=true;
+
+                        del_unit->amount--;
+                }
+                del_unit=del_unit->next;
+        }
+        n--;
+}
+//---------------------------------------------------------------------------
+
+
+
 

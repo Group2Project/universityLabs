@@ -75,6 +75,7 @@ object Form1: TForm1
     FixedCols = 0
     RowCount = 1
     FixedRows = 0
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing]
     TabOrder = 1
   end
   object Button2: TButton
@@ -124,21 +125,21 @@ object Form1: TForm1
       Height = 13
       Caption = #1053#1086#1084#1077#1088' '#1091#1076#1072#1083#1103#1077#1084#1086#1075#1086' '#1091#1079#1083#1072':'
     end
-    object Button5: TButton
-      Left = 104
-      Top = 64
-      Width = 89
-      Height = 25
-      Caption = #1059#1076#1072#1083#1080#1090#1100
-      TabOrder = 0
-      OnClick = Button1Click
-    end
     object CSpinEdit2: TCSpinEdit
       Left = 144
       Top = 32
       Width = 121
       Height = 22
+      TabOrder = 0
+    end
+    object Button5: TButton
+      Left = 96
+      Top = 64
+      Width = 89
+      Height = 25
+      Caption = #1059#1076#1072#1083#1080#1090#1100
       TabOrder = 1
+      OnClick = Button5Click
     end
   end
 end
