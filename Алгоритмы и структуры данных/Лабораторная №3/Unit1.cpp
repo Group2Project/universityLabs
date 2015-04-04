@@ -139,8 +139,9 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
                 delete del_unit;                        //
         }                                               //
         //----------------------------------------------//
+        n--;
 
-        del_unit=head;
+        del_unit = head;
         while(del_unit!=p->next)
         {
                 bool check(false);
@@ -153,22 +154,35 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
                 if(check)
                 {
 
-                        int *del_mas = new int[del_unit->amount-1];
-                        check = false;
-                        for(int i=0;i<del_unit->amount;i++)
-                                if(del_unit->mas[i] != CSpinEdit2->Value)
-                                        if(!check)
-                                                del_mas[i]=del_unit->mas[i];
+                        if(del_unit->amount)
+                        {
+                                int *mas_new = new int[del_unit->amount-1];
+                                for(int i=0;i<del_unit->amount-1;i++)
+                                        if(del_unit->mas[i] != CSpinEdit2->Value)
+                                                mas_new[i] = del_unit->mas[i];
                                         else
-                                                del_mas[i-1]=del_unit->mas[i];
-                                else
-                                        check=true;
-
+                                        {
+                                                for(int j=i;j<del_unit->amount-1;j++)
+                                                        del_unit->mas[j]=del_unit->mas[j+1];
+                                                i--;
+                                        }
+                                delete del_unit->mas;
+                                del_unit->mas = mas_new;
+                        }
+                        else
+                                delete del_unit->mas;
                         del_unit->amount--;
                 }
+                for(int i=0;i<del_unit->amount;i++)
+                        if(del_unit->mas[i] > CSpinEdit2->Value)
+                                del_unit->mas[i]--;
+                if(del_unit->num > CSpinEdit2->Value)
+                        del_unit->num--;
+
                 del_unit=del_unit->next;
+
+
         }
-        n--;
 }
 //---------------------------------------------------------------------------
 
