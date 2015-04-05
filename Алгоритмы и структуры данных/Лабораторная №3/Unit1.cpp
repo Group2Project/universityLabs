@@ -94,98 +94,123 @@ void __fastcall TForm1::Button3Click(TObject *Sender)
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
-        StringGrid1->ColCount=n+1;
-        StringGrid1->RowCount=n+1;
-        for(int i=0;i<n;i++)
+        if(n)
         {
+                StringGrid1->ColCount=n+1;
+                StringGrid1->RowCount=n+1;
+                for(int i=0;i<n;i++)
+                {
                         StringGrid1->Cells[0][i+1]=i;
                         StringGrid1->Cells[i+1][0]=i;
-        }
-        unit *out_unit = head;
-        for(;out_unit!=p->next;out_unit=out_unit->next)
-                for(int i=0;i<out_unit->amount;i++)
-                {
-                        StringGrid1->Cells[out_unit->num+1][out_unit->mas[i]+1]="+";
-                        StringGrid1->Cells[out_unit->mas[i]+1][out_unit->num+1]="+";
                 }
-        for(int i=0;i<n+1;i++)
-                for(int j=0;j<n+1;j++)
-                        if(StringGrid1->Cells[j][i]=="")
-                                StringGrid1->Cells[j][i]="-";
-        for(int i=0;i<n+1;i++)
+                unit *out_unit = head;
+                for(;out_unit!=p->next;out_unit=out_unit->next)
+                        for(int i=0;i<out_unit->amount;i++)
+                        {
+                                StringGrid1->Cells[out_unit->num+1][out_unit->mas[i]+1]="+";
+                                StringGrid1->Cells[out_unit->mas[i]+1][out_unit->num+1]="+";
+                        }
+                for(int i=0;i<n+1;i++)
+                        for(int j=0;j<n+1;j++)
+                                if(StringGrid1->Cells[j][i]=="")
+                                        StringGrid1->Cells[j][i]="-";
+                for(int i=0;i<n+1;i++)
                          StringGrid1->Cells[i][i]="";
+        }
+        else
+        {
+                for(int i=0;i<n+1;i++)
+                        for(int j=0;j<n+1;j++)
+                                StringGrid1->Cells[j][i]="";
+                StringGrid1->ColCount=0;
+                StringGrid1->RowCount=0;
+        }
 }
 //---------------------------------------------------------------------------
 
 
 void __fastcall TForm1::Button5Click(TObject *Sender)
 {
-        unit *del_unit;
-        //----Удаление узла из списка-------------------//
-        if(CSpinEdit2->Value)                           //
-        {                                               //
-                unit *del_unit2=head;                   //
-                for(int i=0;i<CSpinEdit2->Value-1;i++)  //
-                        del_unit2=del_unit2->next;      //
-                del_unit=del_unit2->next;               //
-                del_unit2->next=del_unit->next;         //
-                delete del_unit->mas;                   //
-                delete del_unit;                        //
-        }                                               //
-        else                                            //
-        {                                               //
-                del_unit=head;                          //
-                head->next=del_unit->next;              //
-                delete del_unit;                        //
-        }                                               //
-        //----------------------------------------------//
-        n--;
-
-        del_unit = head;
-        while(del_unit!=p->next)
+        if(n)
         {
-                bool check(false);
-                for(int i=0;i<del_unit->amount;i++)
-                        if(del_unit->mas[i] == CSpinEdit2->Value)
-                        {
-                                check = true;
-                                break;
-                        }
-                if(check)
+                unit *del_unit;
+                //----Удаление узла из списка-------------------//
+                if(CSpinEdit2->Value)                           //
+                {                                               //
+                        unit *del_unit2=head;                   //
+                        for(int i=0;i<CSpinEdit2->Value-1;i++)  //
+                                del_unit2=del_unit2->next;      //
+                        del_unit=del_unit2->next;               //
+                        del_unit2->next=del_unit->next;         //
+                        delete del_unit->mas;                   //
+                        delete del_unit;                        //
+                }                                               //
+                else                                            //
+                {                                               //
+                        del_unit=head;                          //
+                        head=del_unit->next;                    //
+                        delete del_unit->mas;                   //
+                        delete del_unit;                        //
+                }                                               //
+                //----------------------------------------------//
+                n--;
+
+                del_unit = head;
+                while(del_unit!=p->next)
                 {
-
-                        if(del_unit->amount)
+                        bool check(false);
+                        for(int i=0;i<del_unit->amount;i++)
+                                if(del_unit->mas[i] == CSpinEdit2->Value)
+                                {
+                                        check = true;
+                                        break;
+                                }
+                        if(check)
                         {
-                                int *mas_new = new int[del_unit->amount-1];
-                                for(int i=0;i<del_unit->amount-1;i++)
-                                        if(del_unit->mas[i] != CSpinEdit2->Value)
-                                                mas_new[i] = del_unit->mas[i];
-                                        else
-                                        {
-                                                for(int j=i;j<del_unit->amount-1;j++)
-                                                        del_unit->mas[j]=del_unit->mas[j+1];
-                                                i--;
-                                        }
-                                delete del_unit->mas;
-                                del_unit->mas = mas_new;
+                                if(del_unit->amount)
+                                {
+                                        int *mas_new = new int[del_unit->amount-1];
+                                        for(int i=0;i<del_unit->amount-1;i++)
+                                                if(del_unit->mas[i] != CSpinEdit2->Value)
+                                                        mas_new[i] = del_unit->mas[i];
+                                                else
+                                                {
+                                                        for(int j=i;j<del_unit->amount-1;j++)
+                                                                del_unit->mas[j]=del_unit->mas[j+1];
+                                                        i--;
+                                                }
+                                        delete del_unit->mas;
+                                        del_unit->mas = mas_new;
+                                }
+                                else
+                                        delete del_unit->mas;
+                                del_unit->amount--;
                         }
-                        else
-                                delete del_unit->mas;
-                        del_unit->amount--;
+                        for(int i=0;i<del_unit->amount;i++)
+                                if(del_unit->mas[i] > CSpinEdit2->Value)
+                                        del_unit->mas[i]--;
+                        if(del_unit->num > CSpinEdit2->Value)
+                                del_unit->num--;
+                        del_unit=del_unit->next;
                 }
-                for(int i=0;i<del_unit->amount;i++)
-                        if(del_unit->mas[i] > CSpinEdit2->Value)
-                                del_unit->mas[i]--;
-                if(del_unit->num > CSpinEdit2->Value)
-                        del_unit->num--;
-
-                del_unit=del_unit->next;
-
-
         }
 }
 //---------------------------------------------------------------------------
 
-
-
+void __fastcall TForm1::Button6Click(TObject *Sender)
+{
+        if(n)
+        {
+                unit *del_all_unit = head;
+                while(del_all_unit!=p->next)
+                {
+                        delete del_all_unit->mas;
+                        head=del_all_unit->next;
+                        delete del_all_unit;
+                        del_all_unit=head;
+                        n--;
+                }
+        }
+}
+//---------------------------------------------------------------------------
 

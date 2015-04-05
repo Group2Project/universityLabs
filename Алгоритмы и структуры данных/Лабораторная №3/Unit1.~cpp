@@ -153,21 +153,25 @@ void __fastcall TForm1::Button5Click(TObject *Sender)
                         }
                 if(check)
                 {
-                        int *mas_new;
+
                         if(del_unit->amount)
-                                mas_new = new int[del_unit->amount-1];
-                        for(int i=0;i<del_unit->amount-1;i++)
-                                if(del_unit->mas[i] != CSpinEdit2->Value)
-                                        mas_new[i] = del_unit->mas[i];
-                                else
-                                {
-                                        for(int j=i;j<del_unit->amount-1;j++)
-                                                del_unit->mas[j]=del_unit->mas[j+1];
-                                        i--;
-                                }
+                        {
+                                int *mas_new = new int[del_unit->amount-1];
+                                for(int i=0;i<del_unit->amount-1;i++)
+                                        if(del_unit->mas[i] != CSpinEdit2->Value)
+                                                mas_new[i] = del_unit->mas[i];
+                                        else
+                                        {
+                                                for(int j=i;j<del_unit->amount-1;j++)
+                                                        del_unit->mas[j]=del_unit->mas[j+1];
+                                                i--;
+                                        }
+                                delete del_unit->mas;
+                                del_unit->mas = mas_new;
+                        }
+                        else
+                                delete del_unit->mas;
                         del_unit->amount--;
-                        delete del_unit->mas;
-                        del_unit->mas = mas_new;
                 }
                 for(int i=0;i<del_unit->amount;i++)
                         if(del_unit->mas[i] > CSpinEdit2->Value)

@@ -133,13 +133,22 @@ object Form1: TForm1
       TabOrder = 0
     end
     object Button5: TButton
-      Left = 96
+      Left = 176
       Top = 64
       Width = 89
       Height = 25
       Caption = #1059#1076#1072#1083#1080#1090#1100
       TabOrder = 1
       OnClick = Button5Click
+    end
+    object Button6: TButton
+      Left = 16
+      Top = 64
+      Width = 105
+      Height = 25
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1074#1077#1089#1100' '#1075#1088#1072#1092
+      TabOrder = 2
+      OnClick = Button6Click
     end
   end
 end
