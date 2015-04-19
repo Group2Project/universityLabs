@@ -32,7 +32,7 @@ object Form2: TForm2
       OnMouseMove = Image1MouseMove
     end
   end
-  object RadioGroup1: TRadioGroup
+  object select_in_mode: TRadioGroup
     Left = 16
     Top = 16
     Width = 121
@@ -43,10 +43,26 @@ object Form2: TForm2
       #1043#1086#1088#1086#1076
       #1044#1086#1088#1086#1075#1072)
     TabOrder = 1
+    OnClick = select_in_modeClick
+  end
+  object gb_am_city_connect: TGroupBox
+    Left = 16
+    Top = 96
+    Width = 121
+    Height = 49
+    Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1076#1086#1088#1086#1075
+    TabOrder = 2
+    object CSpinEdit1: TCSpinEdit
+      Left = 8
+      Top = 16
+      Width = 97
+      Height = 22
+      TabOrder = 0
+    end
   end
   object MainMenu1: TMainMenu
-    Left = 8
-    Top = 120
+    Left = 760
+    Top = 8
     object N6: TMenuItem
       Caption = #1056#1077#1078#1080#1084' '#1074#1074#1086#1076#1072
       OnClick = N6Click
