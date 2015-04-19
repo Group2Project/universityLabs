@@ -26,6 +26,7 @@ __published:	// IDE-managed Components
         TRadioGroup *select_in_mode;
         TGroupBox *gb_am_city_connect;
         TCSpinEdit *CSpinEdit1;
+        TLabel *test_label;
         void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
         void __fastcall N5Click(TObject *Sender);
         void __fastcall N4Click(TObject *Sender);

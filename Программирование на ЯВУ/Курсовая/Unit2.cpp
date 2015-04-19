@@ -100,6 +100,7 @@ void __fastcall TForm2::Image1Click(TObject *Sender)
         {
 
         }
+        test_label->Caption=IntToStr(all_cities);
 }
 //---------------------------------------------------------------------------
 

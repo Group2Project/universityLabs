@@ -16,6 +16,13 @@ object Form2: TForm2
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
+  object test_label: TLabel
+    Left = 8
+    Top = 744
+    Width = 45
+    Height = 13
+    Caption = 'test_label'
+  end
   object GroupBox1: TGroupBox
     Left = 144
     Top = 0

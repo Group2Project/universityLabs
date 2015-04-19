@@ -14,7 +14,6 @@ TForm2 *Form2;
 int X,Y,all_cities(0);
 city *head,*last_added;
 
-
 //---------------------------------------------------------------------------
 __fastcall TForm2::TForm2(TComponent* Owner)
         : TForm(Owner)
@@ -40,6 +39,7 @@ void __fastcall TForm2::N4Click(TObject *Sender)
         MessageBox(NULL, "Разработал студент группы ПО-41б\n\tАлябьев Сергей.", "Разработчик", MB_OK | MB_ICONASTERISK);
 }
 //---------------------------------------------------------------------------
+
 void __fastcall TForm2::N6Click(TObject *Sender)
 {
         if(N6->Caption=="Режим ввода")
@@ -83,8 +83,19 @@ void __fastcall TForm2::Image1Click(TObject *Sender)
 {
 
         if(!select_in_mode->ItemIndex && N6->Caption=="Закончить ввод")
-
+        {
                 Image1->Canvas->Ellipse(X-7,Y-7,X+7,Y+7);
+                city *add_city = new city(all_cities,CSpinEdit1->Value,X,Y);
+                if(head)
+                {
+                        last_added->next=add_city;
+                        last_added=add_city;
+                }
+                else
+                        last_added=head=add_city;
+                all_cities++;
+
+        }
         if(select_in_mode->ItemIndex && N6->Caption=="Закончить ввод")
         {
 
