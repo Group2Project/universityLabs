@@ -18,10 +18,16 @@ class TForm1 : public TForm
 __published:	// IDE-managed Components
         TChart *Chart1;
         TButton *Button1;
+        TTimer *Timer_mas0;
+        TTimer *Timer_mas1;
+        TTimer *Timer_mas2;
         TChart *Chart2;
         TBarSeries *Series2;
         TBarSeries *Series1;
         void __fastcall Button1Click(TObject *Sender);
+        void __fastcall Timer_mas0Timer(TObject *Sender);
+        void __fastcall Timer_mas1Timer(TObject *Sender);
+        void __fastcall Timer_mas2Timer(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm1(TComponent* Owner);

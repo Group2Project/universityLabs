@@ -7,20 +7,13 @@
 #include <Controls.hpp>
 #include <StdCtrls.hpp>
 #include <Forms.hpp>
-#include <Chart.hpp>
-#include <ExtCtrls.hpp>
-#include <TeEngine.hpp>
-#include <TeeProcs.hpp>
-#include <Series.hpp>
+#include <Grids.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-        TChart *Chart1;
+        TStringGrid *StringGrid1;
         TButton *Button1;
-        TChart *Chart2;
-        TBarSeries *Series2;
-        TBarSeries *Series1;
         void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
@@ -30,4 +23,3 @@ public:		// User declarations
 extern PACKAGE TForm1 *Form1;
 //---------------------------------------------------------------------------
 #endif
- 
