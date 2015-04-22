@@ -1,8 +1,8 @@
 object Form1: TForm1
   Left = 201
   Top = 145
-  Width = 518
-  Height = 147
+  Width = 418
+  Height = 239
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -14,40 +14,33 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 24
+    Left = 40
     Top = 32
     Width = 35
     Height = 13
     Caption = #1063#1080#1089#1083#1086':'
   end
-  object Label2: TLabel
-    Left = 256
-    Top = 32
-    Width = 66
-    Height = 13
-    Caption = #1056#1072#1079#1083#1086#1078#1077#1085#1080#1077':'
-  end
-  object Edit1: TEdit
-    Left = 64
-    Top = 24
-    Width = 145
+  object Button1: TButton
+    Left = 96
+    Top = 56
+    Width = 75
     Height = 25
+    Caption = #1042#1074#1086#1076
     TabOrder = 0
+    OnClick = Button1Click
   end
   object Edit2: TEdit
-    Left = 328
-    Top = 24
-    Width = 145
+    Left = 16
+    Top = 104
+    Width = 289
     Height = 25
     TabOrder = 1
   end
-  object Button1: TButton
-    Left = 176
-    Top = 64
-    Width = 105
-    Height = 33
-    Caption = #1056#1072#1079#1083#1086#1078#1080#1090#1100
+  object CSpinEdit1: TCSpinEdit
+    Left = 80
+    Top = 24
+    Width = 121
+    Height = 22
     TabOrder = 2
-    OnClick = Button1Click
   end
 end
