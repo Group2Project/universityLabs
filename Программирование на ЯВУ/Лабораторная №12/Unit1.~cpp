@@ -164,6 +164,7 @@ void __fastcall TForm1::Button7Click(TObject *Sender)
         buff->Delete(k,m);
         delete_file = fopen(Edit12->Text.c_str(),"w");
         fprintf(delete_file,"%s\n",buff->c_str());
+        delete buff;
         fclose(delete_file);
 }
 //---------------------------------------------------------------------------

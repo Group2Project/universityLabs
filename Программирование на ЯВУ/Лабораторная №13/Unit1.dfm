@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 192
-  Top = 124
-  Width = 250
-  Height = 145
+  Left = 189
+  Top = 153
+  Width = 263
+  Height = 140
   Caption = 'Form1'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -20,20 +20,20 @@ object Form1: TForm1
     Height = 13
     Caption = #1063#1080#1089#1083#1086' k:'
   end
-  object Edit1: TEdit
-    Left = 72
-    Top = 24
-    Width = 121
-    Height = 21
-    TabOrder = 0
-  end
   object Button1: TButton
     Left = 80
     Top = 56
     Width = 75
     Height = 25
     Caption = #1042#1074#1086#1076
-    TabOrder = 1
+    TabOrder = 0
     OnClick = Button1Click
+  end
+  object CSpinEdit1: TCSpinEdit
+    Left = 80
+    Top = 24
+    Width = 121
+    Height = 22
+    TabOrder = 1
   end
 end
