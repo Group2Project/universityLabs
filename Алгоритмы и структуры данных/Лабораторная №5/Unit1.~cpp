@@ -1,16 +1,16 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
-int time_mas0(0),time_mas1(0),time_mas2(0);
 int step_mas0(0),step_mas1(0),step_mas2(0);
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
-#define N 100
+#define N 85000
 #include <ctime>
-void sort(int *mas,int num);
+#include <windows.h>
+int sort(int *mas,int num);
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -21,9 +21,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-        time_mas0=0;
-        time_mas1=0;
-        time_mas2=0;
         step_mas0=0;
         step_mas1=0;
         step_mas2=0;
@@ -37,9 +34,9 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         for(int i=0;i<N;i++)
                 mas2[i]=rand()% 600;
 
-        sort(mas0,0);
-        sort(mas1,1);
-        sort(mas2,2);
+        unsigned int time_mas0=sort(mas0,0);
+        unsigned int time_mas1=sort(mas1,1);
+        unsigned int time_mas2=sort(mas2,2);
 
         Series1->Clear();
         Series1->Add(step_mas0,"Перестановок 1",clRed);
@@ -55,31 +52,10 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 
 }
 //---------------------------------------------------------------------------
-void __fastcall TForm1::Timer_mas0Timer(TObject *Sender)
-{
-        time_mas0++;
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::Timer_mas1Timer(TObject *Sender)
-{
-        time_mas1++;
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::Timer_mas2Timer(TObject *Sender)
-{
-        time_mas2++;
-}
-//---------------------------------------------------------------------------
 
-void sort(int *mas,int num)
+int sort(int *mas,int num)
 {
-        int r = num;
-        if(r==0)
-                Form1->Timer_mas0->Enabled=true;
-        if(r==1)
-                Form1->Timer_mas1->Enabled=true;
-        if(r==2)
-                Form1->Timer_mas2->Enabled=true;
+        unsigned int start_time = GetTickCount();
         for(int step = N/2;step>0;step/=2)
                 for(int i=0;i<N-step;i++)
                 {
@@ -88,20 +64,17 @@ void sort(int *mas,int num)
                                 int temp = mas[j];
                                 mas[j]=mas[j+step];
                                 mas[j+step]=temp;
-                                if(r==0)
+                                if(num==0)
                                         step_mas0++;
-                                if(r==1)
+                                if(num==1)
                                         step_mas1++;
-                                if(r==2)
+                                if(num==2)
                                         step_mas2++;
                         }
                 }
-        if(r==0)
-                Form1->Timer_mas0->Enabled=false;
-        if(r==1)
-                Form1->Timer_mas1->Enabled=false;
-        if(r==2)
-                Form1->Timer_mas2->Enabled=false;
+        unsigned int end_time = GetTickCount();
+        unsigned int result = end_time - start_time;
+        return (result);
 }
 
 //----------------------------------------------------------------------------

@@ -1,16 +1,17 @@
 //---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
-int time_mas0(0),time_mas1(0),time_mas2(0);
 int step_mas0(0),step_mas1(0),step_mas2(0);
 #include "Unit1.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
+#pragma link "CSPIN"
 #pragma resource "*.dfm"
 TForm1 *Form1;
-#define N 100
 #include <ctime>
-void sort(int *mas,int num);
+#include <windows.h>
+int sort(int *mas,int num);
+#define N 85000
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -21,9 +22,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-        time_mas0=0;
-        time_mas1=0;
-        time_mas2=0;
+
         step_mas0=0;
         step_mas1=0;
         step_mas2=0;
@@ -37,9 +36,9 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         for(int i=0;i<N;i++)
                 mas2[i]=rand()% 600;
 
-        sort(mas0,0);
-        sort(mas1,1);
-        sort(mas2,2);
+        unsigned int time_mas0=sort(mas0,0);
+        unsigned int time_mas1=sort(mas1,1);
+        unsigned int time_mas2=sort(mas2,2);
 
         Series1->Clear();
         Series1->Add(step_mas0,"Перестановок 1",clRed);
@@ -56,8 +55,9 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void sort(int *mas,int num)
+int sort(int *mas,int num)
 {
+        unsigned int start_time = GetTickCount();
         for(int step = N/2;step>0;step/=2)
                 for(int i=0;i<N-step;i++)
                 {
@@ -74,6 +74,9 @@ void sort(int *mas,int num)
                                         step_mas2++;
                         }
                 }
+        unsigned int end_time = GetTickCount();
+        unsigned int result = end_time - start_time;
+        return (result);
 }
 
 //----------------------------------------------------------------------------

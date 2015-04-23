@@ -12,6 +12,7 @@
 #include <TeEngine.hpp>
 #include <TeeProcs.hpp>
 #include <Series.hpp>
+#include "CSPIN.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
