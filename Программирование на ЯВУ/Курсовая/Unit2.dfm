@@ -1,8 +1,8 @@
 object Form2: TForm2
-  Left = 267
-  Top = 133
-  Width = 811
-  Height = 824
+  Left = 555
+  Top = 156
+  Width = 820
+  Height = 834
   Caption = #1050#1091#1088#1089#1086#1074#1072#1103
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -25,7 +25,7 @@ object Form2: TForm2
   end
   object GroupBox1: TGroupBox
     Left = 144
-    Top = 0
+    Top = 8
     Width = 649
     Height = 761
     Caption = #1057#1080#1089#1090#1077#1084#1072' '#1076#1086#1088#1086#1075
@@ -41,8 +41,8 @@ object Form2: TForm2
   end
   object select_in_mode: TRadioGroup
     Left = 16
-    Top = 16
-    Width = 121
+    Top = 96
+    Width = 113
     Height = 73
     Caption = #1042#1074#1086#1076
     ItemIndex = 0
@@ -54,8 +54,8 @@ object Form2: TForm2
   end
   object gb_am_city_connect: TGroupBox
     Left = 16
-    Top = 96
-    Width = 121
+    Top = 184
+    Width = 113
     Height = 49
     Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1076#1086#1088#1086#1075
     TabOrder = 2
@@ -66,6 +66,19 @@ object Form2: TForm2
       Height = 22
       TabOrder = 0
     end
+  end
+  object editing_mode: TRadioGroup
+    Left = 16
+    Top = 8
+    Width = 113
+    Height = 73
+    Caption = #1056#1077#1078#1080#1084
+    ItemIndex = 0
+    Items.Strings = (
+      #1044#1086#1073#1072#1074#1083#1077#1085#1080#1077
+      #1059#1076#1072#1083#1077#1085#1080#1077)
+    TabOrder = 3
+    OnClick = editing_modeClick
   end
   object MainMenu1: TMainMenu
     Left = 760

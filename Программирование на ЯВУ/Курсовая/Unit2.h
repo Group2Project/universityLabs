@@ -10,6 +10,8 @@
 #include <Menus.hpp>
 #include <ExtCtrls.hpp>
 #include "CSPIN.h"
+#include "class_city.h"
+
 //---------------------------------------------------------------------------
 class TForm2 : public TForm
 {
@@ -27,6 +29,7 @@ __published:	// IDE-managed Components
         TGroupBox *gb_am_city_connect;
         TCSpinEdit *CSpinEdit1;
         TLabel *test_label;
+        TRadioGroup *editing_mode;
         void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
         void __fastcall N5Click(TObject *Sender);
         void __fastcall N4Click(TObject *Sender);
@@ -36,6 +39,7 @@ __published:	// IDE-managed Components
           int X, int Y);
         void __fastcall Image1Click(TObject *Sender);
         void __fastcall select_in_modeClick(TObject *Sender);
+        void __fastcall editing_modeClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm2(TComponent* Owner);

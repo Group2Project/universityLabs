@@ -1,18 +1,23 @@
 #include "Unit2.h"
-
+#include <math.h>
 //------------------------------------------------------------------------------
 
 class city
 {
         private:
                 int number,amount,image_X,image_Y,**road;
+                bool filled;
         public:
                 city *next;
                 city(int,int,int,int);
                 int get_number();
                 int get_amount();
+                int get_image_X();
+                int get_image_Y();
                 void set_number(int);
                 void set_amount(int);
+                void set_filled(bool);
+                bool test_filled();
 
 };
 
@@ -20,10 +25,11 @@ class city
 
 city::city(int num,int amt,int city_X,int city_Y)
 {
+        filled = false;
         number = num;
         amount = amt;
         image_X = city_X;
-        image_Y = city_X;
+        image_Y = city_Y;
         road = new int *[amount];
         for(int i=0;i<amount;i++)
                 road[i] = new int[4];
@@ -32,30 +38,98 @@ city::city(int num,int amt,int city_X,int city_Y)
 
 //------------------------------------------------------------------------------
 
-int city::get_number()
+inline int city::get_number()
 {
         return(number);
 }
 
 //------------------------------------------------------------------------------
 
-int city::get_amount()
+inline int city::get_amount()
 {
         return(amount);
 }
 
 //------------------------------------------------------------------------------
 
-void city::set_number(int temp_num)
+inline void city::set_number(int temp_num)
 {
         number = temp_num;
 }
 
 //------------------------------------------------------------------------------
 
-void city::set_amount(int temp_amount)
+inline int city::get_image_Y()
+{
+        return(image_Y);
+}
+
+//------------------------------------------------------------------------------
+
+inline int city::get_image_X()
+{
+        return(image_X);
+}
+
+//------------------------------------------------------------------------------
+
+inline void city::set_amount(int temp_amount)
 {
         amount = temp_amount;
+}
+
+//------------------------------------------------------------------------------
+
+void city::set_filled(bool fld)
+{
+        filled = fld;
+}
+
+//------------------------------------------------------------------------------
+
+bool city::test_filled()
+{
+        return filled;
+}
+
+//------------------------------------------------------------------------------
+
+extern city *head,*last_added;
+
+//------------------------------------------------------------------------------
+
+inline void arrow(TImage *temp_image,int x1,int y1,int x2,int y2)
+{
+        temp_image->Canvas->Pen->Width=2;
+        temp_image->Canvas->MoveTo(x1,y1);
+        temp_image->Canvas->LineTo(x2,y2);
+        //temp_image->Canvas->LineTo(x2-2,y2-10);
+        //temp_image->Canvas->MoveTo(x2,y2);
+        //temp_image->Canvas->LineTo(x2-10,y2-2);
+}
+
+//------------------------------------------------------------------------------
+
+int test_circle(int test_X,int test_Y)
+{
+        bool test(false);
+        city *temp_city = head;
+        int k(0);
+
+        while(temp_city!=last_added->next)
+        {
+                k = pow((test_X - temp_city->get_image_X()),2) + pow((test_Y - temp_city->get_image_Y()),2);
+                if(k <= 64)
+                {
+                        test = true;
+                        break;
+                }
+                temp_city=temp_city->next;
+        }
+        if(test)
+                return temp_city->get_number();
+        else
+                return -1;
 }
 
 //------------------------------------------------------------------------------
