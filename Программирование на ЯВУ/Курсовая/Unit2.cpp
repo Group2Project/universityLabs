@@ -51,6 +51,19 @@ void __fastcall TForm2::N6Click(TObject *Sender)
         }
         else
         {
+                if(all_cities)
+                {
+                        city *test_filled = head;
+                        while(test_filled!=last_added->next)
+                        {
+                                if(!test_filled->get_filled())
+                                {
+                                        ShowMessage("Не все узлы заполнены");
+                                        return;
+                                }
+                                test_filled = test_filled->next;
+                        }
+                }
                 editing_mode->Hide();
                 select_in_mode->Hide();
                 gb_am_city_connect->Hide();
@@ -81,13 +94,11 @@ void __fastcall TForm2::Image1MouseMove(TObject *Sender, TShiftState Shift,
 
 void __fastcall TForm2::Image1Click(TObject *Sender)
 {
-        static int road_count;
-        static int road_count_filled;
         if(!select_in_mode->ItemIndex && N6->Caption=="Закончить ввод" && !editing_mode->ItemIndex)
         {
-                road_count = CSpinEdit1->Value;
+                /* Функция ввода города */
                 Image1->Canvas->Ellipse(X-7,Y-7,X+7,Y+7);
-                city *add_city = new city(all_cities,road_count,X,Y);
+                city *add_city = new city(all_cities,CSpinEdit1->Value,X,Y);
                 if(head)
                 {
                         last_added->next=add_city;
@@ -99,41 +110,60 @@ void __fastcall TForm2::Image1Click(TObject *Sender)
         }
         if(select_in_mode->ItemIndex && N6->Caption=="Закончить ввод" && !editing_mode->ItemIndex)
         {
+                static city *start_city;
+                static int road_count;
+                static int road_count_filled;
+                /* Функция ввода дороги */
                 if(!test_arrow)
                 {
+                        /* Выбор начального узла */
                         start_X = X;
                         start_Y = Y;
                         int m = test_circle(start_X,start_Y);
-                        if(m!=-1)
+                        start_city = head;
+                        while(start_city!=last_added->next)
+                        {
+                                if(start_city->get_number() == m)
+                                {
+                                        break;
+                                }
+                                start_city=start_city->next;
+                        }
+                        if(start_city->get_filled())
+                                return;
+                        road_count = start_city->get_amount();
+                        road_count_filled = 0;
+                        if(m!=-1 && start_city->get_amount())
                         {
                                 test_arrow = true;
                         }
                 }
                 else
                 {
-                        if
+                        /* Выбор конечного узла*/
                                 end_X = X;
                                 end_Y = Y;
                                 int m = test_circle(end_X,end_Y);
-                                city *add_city = head;
-                                while(add_city!=last_added->next)
+                                /*city *end_city = head;
+                                while(end_city!=last_added->next)
                                 {
-                                        if(add_city->get_number() == m)
+                                        if(end_city->get_number() == m)
                                         {
                                                 break;
                                         }
-                                        add_city=add_city->next;
+                                        end_city=end_city->next;
                                 }
-                                if(add_city->test_filled())
-                                {
-                                        test_arrow = false;
-                                        return;
-                                }
+                                */
                                 if(m!=-1)
                                 {
-
-                                        arrow(Image1,start_X,start_Y,X,Y);
-                                        test_arrow = false;
+                                        arrow(Image1,start_X,start_Y,end_X,end_Y);
+                                        road_count_filled++;
+                                        start_city->enter_road(road_count_filled,m,end_X,end_Y,CSpinEdit1->Value);
+                                        if(road_count_filled == road_count)
+                                        {
+                                                test_arrow = false;
+                                                start_city->set_filled(true);
+                                        }
                                 }
                 }
 
@@ -173,3 +203,17 @@ void __fastcall TForm2::editing_modeClick(TObject *Sender)
         }
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm2::N7Click(TObject *Sender)
+{
+        if(!all_cities)
+        {
+                ShowMessage("Введите граф");
+                return;
+        }
+        else
+        {
+
+        }
+}
+//---------------------------------------------------------------------------
+

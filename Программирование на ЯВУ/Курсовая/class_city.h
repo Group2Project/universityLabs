@@ -14,11 +14,11 @@ class city
                 int get_amount();
                 int get_image_X();
                 int get_image_Y();
+                bool get_filled();
                 void set_number(int);
                 void set_amount(int);
+                void enter_road(int,int,int,int,int);
                 void set_filled(bool);
-                bool test_filled();
-
 };
 
 //------------------------------------------------------------------------------
@@ -44,6 +44,20 @@ inline int city::get_number()
 }
 
 //------------------------------------------------------------------------------
+
+inline bool city::get_filled()
+{
+        return(filled);
+}
+
+//------------------------------------------------------------------------------
+
+inline void city::set_filled(bool b)
+{
+        filled = b;
+}
+
+//
 
 inline int city::get_amount()
 {
@@ -80,16 +94,12 @@ inline void city::set_amount(int temp_amount)
 
 //------------------------------------------------------------------------------
 
-void city::set_filled(bool fld)
+void city::enter_road(int n,int num,int x,int y,int dist)
 {
-        filled = fld;
-}
-
-//------------------------------------------------------------------------------
-
-bool city::test_filled()
-{
-        return filled;
+        road[n-1][0] = num;
+        road[n-1][1] = x;
+        road[n-1][2] = y;
+        road[n-1][3] = dist;
 }
 
 //------------------------------------------------------------------------------

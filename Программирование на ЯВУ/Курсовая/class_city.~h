@@ -11,17 +11,18 @@ class city
                 city(int,int,int,int);
                 int get_number();
                 int get_amount();
-                void set_number(int);
-                void set_amount(int);
                 int get_image_X();
                 int get_image_Y();
-
+                void set_number(int);
+                void set_amount(int);
+                void enter_road(int,int,int,int,int);
 };
 
 //------------------------------------------------------------------------------
 
 city::city(int num,int amt,int city_X,int city_Y)
 {
+       // filled = false;
         number = num;
         amount = amt;
         image_X = city_X;
@@ -75,7 +76,21 @@ inline void city::set_amount(int temp_amount)
 }
 
 //------------------------------------------------------------------------------
+
+void city::enter_road(int n,int num,int x,int y,int dist)
+{
+        road[n-1][0] = num;
+        road[n-1][1] = x;
+        road[n-1][2] = y;
+        road[n-1][3] = dist;
+}
+
+//------------------------------------------------------------------------------
+
 extern city *head,*last_added;
+
+//------------------------------------------------------------------------------
+
 inline void arrow(TImage *temp_image,int x1,int y1,int x2,int y2)
 {
         temp_image->Canvas->Pen->Width=2;
