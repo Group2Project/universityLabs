@@ -6,6 +6,7 @@ class city
 {
         private:
                 int number,amount,image_X,image_Y,**road;
+                bool filled;
         public:
                 city *next;
                 city(int,int,int,int);
@@ -13,16 +14,18 @@ class city
                 int get_amount();
                 int get_image_X();
                 int get_image_Y();
+                bool get_filled();
                 void set_number(int);
                 void set_amount(int);
                 void enter_road(int,int,int,int,int);
+                void set_filled(bool);
 };
 
 //------------------------------------------------------------------------------
 
 city::city(int num,int amt,int city_X,int city_Y)
 {
-       // filled = false;
+        filled = false;
         number = num;
         amount = amt;
         image_X = city_X;
@@ -41,6 +44,20 @@ inline int city::get_number()
 }
 
 //------------------------------------------------------------------------------
+
+inline bool city::get_filled()
+{
+        return(filled);
+}
+
+//------------------------------------------------------------------------------
+
+inline void city::set_filled(bool b)
+{
+        filled = b;
+}
+
+//
 
 inline int city::get_amount()
 {

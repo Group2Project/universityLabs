@@ -48,6 +48,8 @@ void __fastcall TForm2::N6Click(TObject *Sender)
                 editing_mode->Show();
                 N6->Caption="Закончить ввод";
                 gb_am_city_connect->Show();
+                N7->Enabled=false;
+                
         }
         else
         {
@@ -67,6 +69,7 @@ void __fastcall TForm2::N6Click(TObject *Sender)
                 editing_mode->Hide();
                 select_in_mode->Hide();
                 gb_am_city_connect->Hide();
+                N7->Enabled=true;
                 N6->Caption="Режим ввода";
         }
         if(!editing_mode->ItemIndex && editing_mode->Visible)
@@ -212,7 +215,7 @@ void __fastcall TForm2::N7Click(TObject *Sender)
         }
         else
         {
-
+                
         }
 }
 //---------------------------------------------------------------------------
