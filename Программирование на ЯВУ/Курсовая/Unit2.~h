@@ -11,6 +11,7 @@
 #include <ExtCtrls.hpp>
 #include "CSPIN.h"
 #include "class_city.h"
+#include <Grids.hpp>
 
 //---------------------------------------------------------------------------
 class TForm2 : public TForm
@@ -31,6 +32,9 @@ __published:	// IDE-managed Components
         TLabel *test_label;
         TRadioGroup *editing_mode;
         TMenuItem *N7;
+        TCSpinEdit *CSpinEdit2;
+        TCSpinEdit *CSpinEdit3;
+        TStringGrid *StringGrid1;
         void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
         void __fastcall N5Click(TObject *Sender);
         void __fastcall N4Click(TObject *Sender);

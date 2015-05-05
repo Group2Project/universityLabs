@@ -25,12 +25,16 @@ class city
 
 city::city(int num,int amt,int city_X,int city_Y)
 {
-        filled = false;
+
         number = num;
         amount = amt;
         image_X = city_X;
         image_Y = city_Y;
         road = new int *[amount];
+        if(!amt)
+                filled = true;
+        else
+                filled = false;
         for(int i=0;i<amount;i++)
                 road[i] = new int[4];
 

@@ -14,6 +14,7 @@ class city
                 int get_amount();
                 int get_image_X();
                 int get_image_Y();
+                int get_road(int,int);
                 bool get_filled();
                 void set_number(int);
                 void set_amount(int);
@@ -108,7 +109,10 @@ void city::enter_road(int n,int num,int x,int y,int dist)
 
 //------------------------------------------------------------------------------
 
-extern city *head,*last_added;
+inline int city::get_road(int i, int j)
+{
+        return road[i][j];
+}
 
 //------------------------------------------------------------------------------
 
@@ -124,6 +128,9 @@ inline void arrow(TImage *temp_image,int x1,int y1,int x2,int y2)
 
 //------------------------------------------------------------------------------
 
+extern city *head,*last_added;
+
+//------------------------------------------------------------------------------
 int test_circle(int test_X,int test_Y)
 {
         bool test(false);

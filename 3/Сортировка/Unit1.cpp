@@ -1,17 +1,17 @@
 //---------------------------------------------------------------------------
+
 #include <vcl.h>
 #pragma hdrstop
 int step_mas0(0),step_mas1(0),step_mas2(0);
-#include "Unit1.h"
-//---------------------------------------------------------------------------
-#pragma package(smart_init)
-#pragma link "CSPIN"
-#pragma resource "*.dfm"
-TForm1 *Form1;
 #include <ctime>
 #include <windows.h>
 int sort(int *mas,int num);
-#define N 85000
+#define N 100
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
         : TForm(Owner)
@@ -22,7 +22,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
-
         step_mas0=0;
         step_mas1=0;
         step_mas2=0;
@@ -49,34 +48,14 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         Series2->Add(time_mas0,"Время 1",clRed);
         Series2->Add(time_mas1,"Время 2",clBlue);
         Series2->Add(time_mas2,"Время 3",clYellow);
-
-        
-
 }
 //---------------------------------------------------------------------------
 
 int sort(int *mas,int num)
 {
         unsigned int start_time = GetTickCount();
-        for(int step = N/2;step>0;step/=2)
-                for(int i=0;i<N-step;i++)
-                {
-                        for(int j=i;j>=0 && mas[j] > mas[j+step];j--)
-                        {
-                                int temp = mas[j];
-                                mas[j]=mas[j+step];
-                                mas[j+step]=temp;
-                                if(num==0)
-                                        step_mas0++;
-                                if(num==1)
-                                        step_mas1++;
-                                if(num==2)
-                                        step_mas2++;
-                        }
-                }
+        
         unsigned int end_time = GetTickCount();
         unsigned int result = end_time - start_time;
         return (result);
 }
-
-//----------------------------------------------------------------------------

@@ -215,7 +215,62 @@ void __fastcall TForm2::N7Click(TObject *Sender)
         }
         else
         {
-
+                const int INF = 1000000000;
+                int *predok=new int[all_cities]; //Кратчайший путь
+                int nach = CSpinEdit2->Value;  //Начальный город
+                int *D=new int[all_cities];    //Кратчайшие расстояния до городов
+                bool *flag = new bool[all_cities];   //Проверка проходимости города
+                int **A = new int *[all_cities];     //Матрица длинн дорог
+                for(int i=0;i<all_cities;i++)
+                        A[i] = new int[all_cities];
+                for(int i=0;i<all_cities;i++)
+                        for(int j=0;j<all_cities;j++)
+                                A[i][j]=INF;
+                city *find = head;
+                int r=0;
+                while(find!=last_added->next)
+                {
+                        for(int i=0;i<find->get_amount();i++)
+                        {
+                                int dd = find->get_road(i,0);
+                                A[r][dd] = find->get_road(i,3);
+                        }
+                        r++;
+                        find=find->next;
+                }
+                for(int i=0;i<all_cities;i++)
+                {
+                        predok[i]=nach;
+                        flag[i]=false;
+                        D[i]=A[nach][i];
+                }
+                flag[nach]=true;
+                predok[nach]=0;
+                for(int i=0;i<all_cities;i++)
+                {
+                        int k=0;
+                        int minras = INF;
+                        for(int j=0;j<all_cities;j++)
+                        {
+                                if(!flag[j]&&minras > D[i])
+                                {
+                                        minras=D[j];
+                                        k = j;
+                                }
+                        }
+                        flag[k]=true;
+                        for(int j=0;j<all_cities;j++)
+                        {
+                                if(!flag[j]&&D[j]>D[k]+A[k][j])
+                                {
+                                        D[j]=D[k]+A[k][j];
+                                        predok[j]=k;
+                                }
+                        }
+                }
+                for(int i=0;i<all_cities;i++)
+                        StringGrid1->Cells[i][0]=IntToStr(D[i]);
+                //ShowMessage(IntToStr(D[2]));
         }
 }
 //---------------------------------------------------------------------------
