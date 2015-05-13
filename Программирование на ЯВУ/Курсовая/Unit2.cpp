@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include "Unit1.h"
 #include "Unit2.h"
+#include <queue.h>
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -215,18 +216,20 @@ void __fastcall TForm2::N7Click(TObject *Sender)
         }
         else
         {
-                const int INF = 1000000000;
-                int *predok=new int[all_cities]; //Кратчайший путь
-                int nach = CSpinEdit2->Value;  //Начальный город
-                int *D=new int[all_cities];    //Кратчайшие расстояния до городов
-                bool *flag = new bool[all_cities];   //Проверка проходимости города
-                int **A = new int *[all_cities];     //Матрица длинн дорог
+                const int INF = 0;
+                queue<int> turn;
+                city *find = head;
+                int unit = CSpinEdit2->Value;
+                bool *flag = new bool[all_cities];
+                int **A = new int *[all_cities];     //Матрица смежности
                 for(int i=0;i<all_cities;i++)
                         A[i] = new int[all_cities];
                 for(int i=0;i<all_cities;i++)
+                {
                         for(int j=0;j<all_cities;j++)
                                 A[i][j]=INF;
-                city *find = head;
+                        flag[i] = false;   //1 этап
+                }
                 int r=0;
                 while(find!=last_added->next)
                 {
@@ -238,6 +241,28 @@ void __fastcall TForm2::N7Click(TObject *Sender)
                         r++;
                         find=find->next;
                 }
+                int start_unit = unit;
+                turn.push(start_unit);   //2 этап
+                flag[start_unit]=true;
+                while(!turn.empty())
+                {
+                        for(int i=0;i<all_cities;i++)
+                                if(A[unit][i] && flag[i])
+                                {
+                                        turn.push(i);
+                                        flag[i]=true;
+                                }
+                        turn.pop();
+                        unit=turn.front();
+                }
+
+
+
+
+                /*
+                int *predok=new int[all_cities]; //Кратчайший путь
+                int *D=new int[all_cities];    //Кратчайшие расстояния до городо
+
                 for(int i=0;i<all_cities;i++)
                 {
                         predok[i]=nach;
@@ -269,8 +294,8 @@ void __fastcall TForm2::N7Click(TObject *Sender)
                         }
                 }
                 for(int i=0;i<all_cities;i++)
-                        StringGrid1->Cells[i][0]=IntToStr(D[i]);
-                //ShowMessage(IntToStr(D[2]));
+                        StringGrid1->Cells[i][0]=IntToStr(D[i]); */
+
         }
 }
 //---------------------------------------------------------------------------
