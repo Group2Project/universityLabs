@@ -19,7 +19,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void find(int GR[V][V],int st)
 {
-        int distance[V],index,i,j,u;
+        int distance[V],index,i,j;
         bool visited[V];
         for(i=0;i<V;i++)
         {
@@ -31,7 +31,7 @@ void find(int GR[V][V],int st)
         {
                 int min = INT_MAX;
                 for(j=0;j<V;j++)
-                        if(!visited[j] && distance[j]<=min)
+                       if(!visited[j] && distance[j]<=min)
                         {
                                 min=distance[j];
                                 index=j;

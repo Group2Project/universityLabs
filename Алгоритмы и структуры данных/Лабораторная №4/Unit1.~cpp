@@ -19,7 +19,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 void find(int GR[V][V],int st)
 {
-        int distance[V],count,index,i,u, m=st+1;
+        int distance[V],index,i,j,u;
         bool visited[V];
         for(i=0;i<V;i++)
         {
@@ -27,22 +27,21 @@ void find(int GR[V][V],int st)
                 visited[i]=false;
         }
         distance[st]=0;
-        for(count=0;count<V-1;count++)
+        for(i=0;i<V-1;i++)
         {
                 int min = INT_MAX;
-                for(i=0;i<V;i++)
-                        if(!visited[i] && distance[i]<=min)
+                for(j=0;j<V;j++)
+                        if(!visited[j] && distance[j]<=min)
                         {
-                                min=distance[i];
-                                index=i;
+                                min=distance[j];
+                                index=j;
                         }
-                u=index;
-                visited[u]=true;
-                for(i=0;i<V;i++)
-                        if(!visited[i] && GR[u][i] && distance[u]!=INT_MAX && distance[u]+GR[u][i]<distance[i])
-                                distance[i]=distance[u]+GR[u][i];
+                visited[index]=true;
+                for(j=0;j<V;j++)
+                        if(!visited[j] && GR[index][j] && distance[index]!=INT_MAX && distance[index]+GR[index][j]<distance[j])
+                                distance[j]=distance[index]+GR[index][j];
         }
-        for(i =0; i<V;i++)
+        for(i=0;i<V;i++)
                 Form1->StringGrid1->Cells[i][0] = IntToStr(distance[i]);
 }
 
