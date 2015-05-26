@@ -41,7 +41,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                 if(hash_sum >= hash_tab.size())
                 {
                         incr_vec(&hash_tab,hash_sum);
-                        hash_tab[hash_sum]=source_mas[i];
+                        hash_tab.at(hash_sum)=source_mas.at(i);
                         continue;
                 }
                 if(hash_tab[hash_sum]!=NULL)
@@ -52,7 +52,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
                 }
                 else
                 {
-                        hash_tab[hash_sum]=source_mas[i];
+                        hash_tab.at(hash_sum)=source_mas.at(i);
                         l=0;
                         continue;
                 }
@@ -62,11 +62,10 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
         for(unsigned int i=0;i<hash_tab.size();i++)
         {
                 int r;
-                r = hash_tab.at(i);
+                r = hash_tab[i];
                 f1 << r << '\n';
         }
         f1.close();
-
 }
 //---------------------------------------------------------------------------
 
@@ -97,7 +96,7 @@ void incr_vec(vector<int> *a,int k)
                 a->push_back(NULL);
                 return;
         }
-        for(int i=0;i<r;i++)
+        for(int i=0;i<=r;i++)
                 a->push_back(NULL);
 }
 
@@ -106,21 +105,29 @@ void incr_vec(vector<int> *a,int k)
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
-        int n = CSpinEdit1->Value;
-        int l=0;
-        int r = _hash(n,l);
-        int m = hash_tab[r];
-        for(;;)
+        if(hash_tab.size())
         {
-                if(hash_tab[r]!=0 && hash_tab[r]==n)
+                int n = CSpinEdit1->Value;
+                int l=0;
+                int r = _hash(n,l);
+                int m = hash_tab[r];
+                for(;;)
                 {
-                        ShowMessage("Число найдено");
-                        return;
-                }
-                if(hash_tab[r]!=0 && hash_tab[r]!=n)
-                {
-                        l++;
-                        r = _hash(n,l);
+                        if(hash_tab[r] && hash_tab[r]==n)
+                        {
+                                ShowMessage("Число найдено");
+                                return;
+                        }
+                        if(hash_tab[r] && hash_tab[r]!=n)
+                        {
+                                l++;
+                                r = _hash(n,l);
+                        }
+                        if(!hash_tab[r])
+                        {
+                                ShowMessage("Совпадения не найдены");
+                                return;
+                        }
                 }
         }
 }
