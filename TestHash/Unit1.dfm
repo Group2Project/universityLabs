@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 221
-  Top = 423
-  Width = 870
+  Left = 192
+  Top = 124
+  Width = 1086
   Height = 640
   Caption = 'Form1'
   Color = clBtnFace
@@ -14,27 +14,31 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Button1: TButton
-    Left = 64
-    Top = 64
+    Left = 176
+    Top = 48
     Width = 75
     Height = 25
     Caption = 'Button1'
     TabOrder = 0
     OnClick = Button1Click
   end
-  object CSpinEdit1: TCSpinEdit
-    Left = 40
-    Top = 32
-    Width = 129
-    Height = 22
+  object StringGrid1: TStringGrid
+    Left = 0
+    Top = 104
+    Width = 1065
+    Height = 57
+    ColCount = 30
+    FixedCols = 0
+    RowCount = 1
+    FixedRows = 0
     TabOrder = 1
   end
-  object StringGrid1: TStringGrid
-    Left = 24
-    Top = 128
-    Width = 737
-    Height = 65
-    ColCount = 10
+  object StringGrid2: TStringGrid
+    Left = 5
+    Top = 192
+    Width = 1065
+    Height = 57
+    ColCount = 30
     FixedCols = 0
     RowCount = 1
     FixedRows = 0

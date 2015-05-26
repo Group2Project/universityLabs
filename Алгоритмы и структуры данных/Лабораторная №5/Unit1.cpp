@@ -58,14 +58,23 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 int sort(int *mas,int num)
 {
         unsigned int start_time = GetTickCount();
-        for(int step = N/2;step>0;step/=2)
-                for(int i=0;i<N-step;i++)
+        int x,gap;
+        int a[5];
+        a[0]=9;
+        a[1]=5;
+        a[2]=3;
+        a[3]=2;
+        a[4]=1;
+        int i,j,k;
+        for(k=0;k<5;k++)
+        {
+                gap=a[k];
+                for(i=gap;i<N;i++)
                 {
-                        for(int j=i;j>=0 && mas[j] > mas[j+step];j--)
+                        x=mas[i];
+                        for(j=i-gap;x<mas[j] && j>=0;j=j-gap)
                         {
-                                int temp = mas[j];
-                                mas[j]=mas[j+step];
-                                mas[j+step]=temp;
+                                mas[j+gap]=mas[j];
                                 if(num==0)
                                         step_mas0++;
                                 if(num==1)
@@ -73,7 +82,9 @@ int sort(int *mas,int num)
                                 if(num==2)
                                         step_mas2++;
                         }
+                        mas[j+gap]=x;
                 }
+        }
         unsigned int end_time = GetTickCount();
         unsigned int result = end_time - start_time;
         return (result);

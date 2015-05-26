@@ -12,8 +12,9 @@
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-        TStringGrid *StringGrid1;
         TButton *Button1;
+        TStringGrid *StringGrid1;
+        TStringGrid *StringGrid2;
         void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
