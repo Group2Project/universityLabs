@@ -1,0 +1,93 @@
+//---------------------------------------------------------------------------
+#include <vcl.h>
+#pragma hdrstop
+#include <ctime>
+#include <vector.h>
+#include <fstream.h>
+#include <math.h>
+#include "Unit1.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma link "CSPIN"
+#pragma resource "*.dfm"
+TForm1 *Form1;
+int _hash(int k);
+void incr_vec(vector<int> *,int);
+struct st
+{
+        int a;
+        st *next,*prev;
+};
+st *p;
+vector<st> source_mas;
+vector<st *> hash_tab;
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+        ifstream F;
+        F.open("rand.txt");
+        while(!F.eof())
+        {
+                int a;
+                F >> (int)a;
+                st *temp = new st;
+                temp->a = a;
+                source_mas.push_back(*temp);
+        }
+        F.close();
+        for(unsigned int i=0;i<source_mas.size();i++)
+        {
+                int t = source_mas[i].a;
+        ofstream f1;
+        f1.open("rand1.txt");
+        for(unsigned int i=0;i<hash_tab.size();i++)
+        {
+
+        }
+        f1.close();
+}
+//---------------------------------------------------------------------------
+
+int _hash(int k)
+{
+        double gold_sec = (1+sqrt(5))/2.0;
+        double h = k*gold_sec;
+        int m(0);
+        while(k>0)
+        {
+                m++;
+                k/=10;
+        }
+        int h1 =(int)h;
+        h -=h1;
+        for(int j=0;j<m;j++)
+                h*=10;
+        return (int)h;
+}
+
+//----------------------------------------------------------------------------
+
+void incr_vec(vector<st> *a,int k)
+{
+        int r = k - a->size();
+        if(!r)
+        {
+                a->push_back();
+                return;
+        }
+        for(int i=0;i<=r;i++)
+                a->push_back();
+}
+
+//---------------------------------------------------------------------------
+
+
+
+
+
