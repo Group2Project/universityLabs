@@ -4,12 +4,14 @@
   <MACROS>
     <VERSION value="BCB.06.00"/>
     <PROJECT value="Project1.exe"/>
-    <OBJFILES value="Project1.obj Unit1.obj Unit2.obj"/>
+    <OBJFILES value="Project1.obj Unit1.obj Unit2.obj Unit3.obj 
+      &quot;..\Новая папка\Курсовая\Unit4.obj&quot; &quot;..\Новая папка\Курсовая\Unit5.obj&quot; &quot;..\Новая папка\Курсовая\Unit6.obj&quot;"/>
     <RESFILES value="Project1.res"/>
     <IDLFILES value=""/>
     <IDLGENFILES value=""/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) Unit1.dfm Unit2.dfm"/>
+    <RESDEPEN value="$(RESFILES) Unit1.dfm Unit2.dfm Unit3.dfm 
+      &quot;..\Новая папка\Курсовая\Unit4.dfm&quot; &quot;..\Новая папка\Курсовая\Unit5.dfm&quot; &quot;..\Новая папка\Курсовая\Unit6.dfm&quot;"/>
     <LIBFILES value=""/>
     <LIBRARIES value=""/>
     <SPARELIBS value="vcl.lib rtl.lib bcbsmp.lib vclx.lib"/>
@@ -20,7 +22,7 @@
       inetdbbde.bpi inetdbxpress.bpi inetdb.bpi nmfast.bpi webdsnap.bpi 
       bcbie.bpi websnap.bpi soaprtl.bpi dclocx.bpi dbexpress.bpi dbxcds.bpi 
       indy.bpi bcb2kaxserver.bpi"/>
-    <PATHCPP value=".;"/>
+    <PATHCPP value=".;&quot;..\Новая папка\Курсовая&quot;;&quot;..\Новая папка\Курсовая&quot;;&quot;..\Новая папка\Курсовая&quot;"/>
     <PATHPAS value=".;"/>
     <PATHRC value=".;"/>
     <PATHASM value=".;"/>
@@ -30,13 +32,14 @@
     <USERDEFINES value="_DEBUG"/>
     <SYSDEFINES value="_RTLDLL;NO_STRICT;USEPACKAGES"/>
     <MAINSOURCE value="Project1.cpp"/>
-    <INCLUDEPATH value="&quot;C:\Program Files (x86)\Borland\CBuilder6\Bin&quot;;&quot;C:\Users\Sergey\Desktop\universityLabs\Программирование на ЯВУ\Курсовая&quot;;$(BCB)\include;$(BCB)\include\vcl"/>
-    <LIBPATH value="&quot;C:\Program Files (x86)\Borland\CBuilder6\Bin&quot;;&quot;C:\Users\Sergey\Desktop\universityLabs\Программирование на ЯВУ\Курсовая&quot;;$(BCB)\lib\obj;$(BCB)\lib"/>
+    <INCLUDEPATH value="&quot;..\Новая папка\Курсовая&quot;;&quot;C:\Program Files (x86)\Borland\CBuilder6\Bin&quot;;&quot;C:\Users\Sergey\Desktop\universityLabs\Программирование на ЯВУ\Курсовая&quot;;$(BCB)\include;$(BCB)\include\vcl"/>
+    <LIBPATH value="&quot;..\Новая папка\Курсовая&quot;;&quot;C:\Program Files (x86)\Borland\CBuilder6\Bin&quot;;&quot;C:\Users\Sergey\Desktop\universityLabs\Программирование на ЯВУ\Курсовая&quot;;$(BCB)\lib\obj;$(BCB)\lib"/>
     <WARNINGS value="-w-par"/>
     <OTHERFILES value=""/>
   </MACROS>
   <OPTIONS>
-    <IDLCFLAGS value="-I&quot;C:\Program Files (x86)\Borland\CBuilder6\Bin&quot; 
+    <IDLCFLAGS value="-I&quot;..\Новая папка\Курсовая&quot; 
+      -I&quot;C:\Program Files (x86)\Borland\CBuilder6\Bin&quot; 
       -I&quot;C:\Users\Sergey\Desktop\universityLabs\Программирование на ЯВУ\Курсовая&quot; 
       -I$(BCB)\include -I$(BCB)\include\vcl -src_suffix cpp -D_DEBUG -boa"/>
     <CFLAG1 value="-Od -H=$(BCB)\lib\vcl60.csm -Hc -Vx -Ve -X- -r- -a8 -b- -k -y -v -vi- -c 
@@ -58,6 +61,10 @@
       <FILE FILENAME="Project1.cpp" FORMNAME="" UNITNAME="Project1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="Unit1.cpp" FORMNAME="Form1" UNITNAME="Unit1" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
       <FILE FILENAME="Unit2.cpp" FORMNAME="Form2" UNITNAME="Unit2" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="Unit3.cpp" FORMNAME="Form3" UNITNAME="Unit3" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\Новая папка\Курсовая\Unit4.cpp" FORMNAME="Form4" UNITNAME="Unit4" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\Новая папка\Курсовая\Unit5.cpp" FORMNAME="Form5" UNITNAME="Unit5" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
+      <FILE FILENAME="..\Новая папка\Курсовая\Unit6.cpp" FORMNAME="Form6" UNITNAME="Unit6" CONTAINERID="CCompiler" DESIGNCLASS="" LOCALCOMMAND=""/>
   </FILELIST>
   <BUILDTOOLS>
   </BUILDTOOLS>

@@ -1,6 +1,7 @@
 #include "Unit2.h"
 #include <math.h>
 //------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 
 class city
 {
@@ -24,15 +25,15 @@ class city
 
 //------------------------------------------------------------------------------
 
-city::city(int num,int amt,int city_X,int city_Y)
+city::city(int number,int amount,int image_X,int image_Y)
 {
 
-        number = num;
-        amount = amt;
-        image_X = city_X;
-        image_Y = city_Y;
+        this->number = number;
+        this->amount = amount;
+        this->image_X = image_X;
+        this->image_Y = image_Y;
         road = new int *[amount];
-        if(!amt)
+        if(!amount)
                 filled = true;
         else
                 filled = false;

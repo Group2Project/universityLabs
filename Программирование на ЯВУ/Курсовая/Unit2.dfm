@@ -1,6 +1,6 @@
 object Form2: TForm2
-  Left = 200
-  Top = 28
+  Left = 185
+  Top = 100
   Width = 878
   Height = 878
   Caption = #1050#1091#1088#1089#1086#1074#1072#1103
@@ -45,27 +45,11 @@ object Form2: TForm2
     Width = 113
     Height = 73
     Caption = #1042#1074#1086#1076
-    ItemIndex = 0
     Items.Strings = (
       #1043#1086#1088#1086#1076
       #1044#1086#1088#1086#1075#1072)
     TabOrder = 1
     OnClick = select_in_modeClick
-  end
-  object gb_am_city_connect: TGroupBox
-    Left = 16
-    Top = 184
-    Width = 113
-    Height = 49
-    Caption = #1050#1086#1083#1080#1095#1077#1089#1090#1074#1086' '#1076#1086#1088#1086#1075
-    TabOrder = 2
-    object CSpinEdit1: TCSpinEdit
-      Left = 8
-      Top = 16
-      Width = 97
-      Height = 22
-      TabOrder = 0
-    end
   end
   object editing_mode: TRadioGroup
     Left = 16
@@ -73,11 +57,10 @@ object Form2: TForm2
     Width = 113
     Height = 73
     Caption = #1056#1077#1078#1080#1084
-    ItemIndex = 0
     Items.Strings = (
       #1044#1086#1073#1072#1074#1083#1077#1085#1080#1077
       #1059#1076#1072#1083#1077#1085#1080#1077)
-    TabOrder = 3
+    TabOrder = 2
     OnClick = editing_modeClick
   end
   object StringGrid1: TStringGrid
@@ -89,14 +72,13 @@ object Form2: TForm2
     FixedCols = 0
     RowCount = 1
     FixedRows = 0
-    TabOrder = 4
+    TabOrder = 3
   end
   object MainMenu1: TMainMenu
-    Left = 760
+    Left = 816
     Top = 8
     object N7: TMenuItem
       Caption = #1053#1072#1081#1090#1080' '#1076#1086#1088#1086#1075#1091
-      OnClick = N7Click
     end
     object N6: TMenuItem
       Caption = #1056#1077#1078#1080#1084' '#1074#1074#1086#1076#1072

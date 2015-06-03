@@ -12,7 +12,7 @@
 #include "CSPIN.h"
 #include "class_city.h"
 #include <Grids.hpp>
-
+extern int current_mode;
 //---------------------------------------------------------------------------
 class TForm2 : public TForm
 {
@@ -27,8 +27,6 @@ __published:	// IDE-managed Components
         TImage *Image1;
         TMenuItem *N6;
         TRadioGroup *select_in_mode;
-        TGroupBox *gb_am_city_connect;
-        TCSpinEdit *CSpinEdit1;
         TLabel *test_label;
         TRadioGroup *editing_mode;
         TMenuItem *N7;
@@ -36,14 +34,14 @@ __published:	// IDE-managed Components
         void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
         void __fastcall N5Click(TObject *Sender);
         void __fastcall N4Click(TObject *Sender);
-        void __fastcall N6Click(TObject *Sender);
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall Image1MouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
-        void __fastcall Image1Click(TObject *Sender);
         void __fastcall select_in_modeClick(TObject *Sender);
         void __fastcall editing_modeClick(TObject *Sender);
-        void __fastcall N7Click(TObject *Sender);
+        void __fastcall N6Click(TObject *Sender);
+        void __fastcall Image1Click(TObject *Sender);
+        void __fastcall Button1Click(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
         __fastcall TForm2(TComponent* Owner);
