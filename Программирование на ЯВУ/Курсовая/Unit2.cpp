@@ -12,7 +12,7 @@
 #pragma link "CSPIN"
 #pragma resource "*.dfm"
 TForm2 *Form2;
-int X,Y,all_cities(0),start_X,start_Y,end_X,end_Y;
+int X,Y,all_cities(0);
 city *head,*last_added;
 bool test_arrow(false);
 
@@ -121,9 +121,7 @@ void __fastcall TForm2::Image1Click(TObject *Sender)
                 if(!test_arrow)
                 {
                         /* Выбор начального узла */
-                        start_X = X;
-                        start_Y = Y;
-                        int m = test_circle(start_X,start_Y);
+                        int m = test_circle(X,Y);
                         start_city = head;
                         while(start_city!=last_added->next)
                         {
@@ -145,32 +143,42 @@ void __fastcall TForm2::Image1Click(TObject *Sender)
                 else
                 {
                         /* Выбор конечного узла*/
-                                end_X = X;
-                                end_Y = Y;
-                                int m = test_circle(end_X,end_Y);
-                                /*city *end_city = head;
-                                while(end_city!=last_added->next)
-                                {
-                                        if(end_city->get_number() == m)
-                                        {
-                                                break;
-                                        }
-                                        end_city=end_city->next;
-                                }
-                                */
+                        if(CSpinEdit1->Value)
+                        {
+                                int m = test_circle(X,Y);
                                 if(m!=-1)
                                 {
-                                        arrow(Image1,start_X,start_Y,end_X,end_Y);
+                                        city *end_city = head;
+                                        while(end_city!=last_added->next)
+                                        {
+                                                if(end_city->get_number() == m)
+                                                {
+                                                        break;
+                                                }
+                                                end_city=end_city->next;
+                                        }
+                                        arrow(Image1,start_city->get_image_X(),start_city->get_image_Y(),end_city->get_image_X(),end_city->get_image_Y());
                                         road_count_filled++;
-                                        start_city->enter_road(road_count_filled,m,end_X,end_Y,CSpinEdit1->Value);
+                                        start_city->enter_road(road_count_filled,m,end_city->get_image_X(),end_city->get_image_Y(),CSpinEdit1->Value);
                                         if(road_count_filled == road_count)
                                         {
                                                 test_arrow = false;
                                                 start_city->set_filled(true);
                                         }
                                 }
+                        }
+                        else
+                        {
+                                ShowMessage("Введите длинну дороги");
+                        }
                 }
-
+        }
+        if(editing_mode->ItemIndex && N6->Caption=="Закончить ввод")
+        {
+                if(!select_in_mode->ItemIndex)
+                {}
+                if(select_in_mode->ItemIndex)
+                {}
         }
         test_label->Caption=IntToStr(all_cities);
 }
@@ -178,15 +186,15 @@ void __fastcall TForm2::Image1Click(TObject *Sender)
 
 void __fastcall TForm2::select_in_modeClick(TObject *Sender)
 {
+        CSpinEdit1->Value = 0;
+        gb_am_city_connect->Show();
         if(!select_in_mode->ItemIndex && select_in_mode->Visible && !editing_mode->ItemIndex)
         {
-                gb_am_city_connect->Show();
                 gb_am_city_connect->Caption="Количество дорог";
 
         }
         if(select_in_mode->ItemIndex && select_in_mode->Visible && !editing_mode->ItemIndex)
         {
-                gb_am_city_connect->Show();
                 gb_am_city_connect->Caption="Протяженность";
         }
 }
@@ -216,87 +224,35 @@ void __fastcall TForm2::N7Click(TObject *Sender)
         }
         else
         {
-                const int INF = 0;
-                queue<int> turn;
-                city *find = head;
-                int unit = CSpinEdit2->Value;
-                bool *flag = new bool[all_cities];
-                int **A = new int *[all_cities];     //Матрица смежности
-                for(int i=0;i<all_cities;i++)
-                        A[i] = new int[all_cities];
-                for(int i=0;i<all_cities;i++)
-                {
-                        for(int j=0;j<all_cities;j++)
-                                A[i][j]=INF;
-                        flag[i] = false;   //1 этап
-                }
-                int r=0;
-                while(find!=last_added->next)
-                {
-                        for(int i=0;i<find->get_amount();i++)
-                        {
-                                int dd = find->get_road(i,0);
-                                A[r][dd] = find->get_road(i,3);
-                        }
-                        r++;
-                        find=find->next;
-                }
-                int start_unit = unit;
-                turn.push(start_unit);   //2 этап
-                flag[start_unit]=true;
-                while(!turn.empty())
-                {
-                        for(int i=0;i<all_cities;i++)
-                                if(A[unit][i] && flag[i])
-                                {
-                                        turn.push(i);
-                                        flag[i]=true;
-                                }
-                        turn.pop();
-                        unit=turn.front();
-                }
-
-
-
-
-                /*
-                int *predok=new int[all_cities]; //Кратчайший путь
-                int *D=new int[all_cities];    //Кратчайшие расстояния до городо
-
-                for(int i=0;i<all_cities;i++)
-                {
-                        predok[i]=nach;
-                        flag[i]=false;
-                        D[i]=A[nach][i];
-                }
-                flag[nach]=true;
-                predok[nach]=0;
-                for(int i=0;i<all_cities;i++)
-                {
-                        int k=0;
-                        int minras = INF;
-                        for(int j=0;j<all_cities;j++)
-                        {
-                                if(!flag[j]&&minras > D[i])
-                                {
-                                        minras=D[j];
-                                        k = j;
-                                }
-                        }
-                        flag[k]=true;
-                        for(int j=0;j<all_cities;j++)
-                        {
-                                if(!flag[j]&&D[j]>D[k]+A[k][j])
-                                {
-                                        D[j]=D[k]+A[k][j];
-                                        predok[j]=k;
-                                }
-                        }
-                }
-                for(int i=0;i<all_cities;i++)
-                        StringGrid1->Cells[i][0]=IntToStr(D[i]); */
 
         }
 }
 //---------------------------------------------------------------------------
 
+
+/*int GamilC(int k)
+{
+        int q1 = 0;
+        for(int i=0;i<n && !q1;i++)
+        {
+                if(city[i].checkCopy(path[k-1]+1) || city[path[k-1]].checkCopy(i+1))
+                {//Здесь проверяется связаны ли узлы
+                        if(k==n && i==point)
+                                q1=1;
+                        else
+                                if(c[i]==-1)
+                                {
+                                        c[i] = k;
+                                        path[k] = i;
+                                        q1 = GamilC(k+1);
+                                        if(!q1)
+                                                c[i] = -1;
+                                }
+                else
+                        continue;
+
+                }
+        }
+        return q1;
+}
+*/
