@@ -30,7 +30,3 @@ void __fastcall TForm1::FormCreate(TObject *Sender)
         Timer1->Enabled=true;
 }
 //---------------------------------------------------------------------------
-
-
-
-
